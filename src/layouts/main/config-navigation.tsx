@@ -1,5 +1,7 @@
-import { paths } from 'src/routes/paths';
 import { useMemo } from 'react';
+
+import { paths } from 'src/routes/paths';
+
 import { useTranslate } from 'src/locales';
 import { PATH_AFTER_LOGIN } from 'src/config-global';
 

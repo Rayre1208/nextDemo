@@ -1,7 +1,6 @@
 'use client';
 
 import { AuthGuard } from 'src/auth/guard';
-import MainLayout from 'src/layouts/main';
 
 // ----------------------------------------------------------------------
 

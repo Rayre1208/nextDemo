@@ -1,28 +1,31 @@
+import { useState } from 'react';
 import { m } from 'framer-motion';
-import { useRef, useState, useEffect, useCallback } from 'react';
+
+import { textGradient } from 'src/theme/css';
+
+//import { useRef, useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
+// import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import Grid from '@mui/material/Unstable_Grid2';
 import Rating from '@mui/material/Rating';
-import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Unstable_Grid2';
+// import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { paths } from 'src/routes/paths';
-import { RouterLink } from 'src/routes/components';
-import { alpha } from '@mui/material/styles';
 import { styled, useTheme } from '@mui/material/styles';
 
-import Iconify from 'src/components/iconify';
-
-import { varFade, MotionViewport } from 'src/components/animate';
+import { paths } from 'src/routes/paths';
+import { RouterLink } from 'src/routes/components';
+//import { alpha } from '@mui/material/styles';
 
 import { HEADER } from 'src/layouts/config-layout';
 
-import { bgBlur, bgGradient, textGradient } from 'src/theme/css';
+import Iconify from 'src/components/iconify';
+import { varFade, MotionViewport } from 'src/components/animate';
 
+//import { bgBlur, bgGradient, textGradient } from 'src/theme/css';
 // ----------------------------------------------------------------------
 
 const StyledTextGradient = styled(m.h1)(({ theme }) => ({
@@ -49,7 +52,7 @@ export default function HomeMinimalTest() {
 
   const [percent, setPercent] = useState(0);
 
-  const lightMode = theme.palette.mode === 'light';
+  //const lightMode = theme.palette.mode === 'light';
 
   const renderDescription = (
     <Stack
@@ -72,7 +75,7 @@ export default function HomeMinimalTest() {
             paddingTop: '30%', // 增加 padding-top
           }}
         >
-          Hi, I'm
+          Hi I&apos;m
         </Typography>
 
         <StyledTextGradient
@@ -166,7 +169,7 @@ export default function HomeMinimalTest() {
         <Box
           component="img"
           alt="auth"
-          src={'/assets/illustrations/selfie/fullSuitBodyTransparent.png'}
+          src="/assets/illustrations/selfie/fullSuitBodyTransparent.png"
           sx={{
             maxWidth: '100%',
             height: 'auto',
@@ -209,7 +212,7 @@ export default function HomeMinimalTest() {
           }}
         >
           Based in Taiwan <br />
-          i'm developer and <br />
+          i&apos;m developer and <br />
           UI/UX designer.
         </Typography>
       </m.div>
@@ -226,7 +229,7 @@ export default function HomeMinimalTest() {
           <br />
           your brand and grow your business?
           <br />
-          let's shake hand with me.
+          let&apos;s shake hand with me.
         </Typography>
       </m.div>
 

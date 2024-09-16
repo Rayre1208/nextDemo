@@ -4,10 +4,10 @@ import merge from 'lodash/merge';
 // date fns
 import { fr as frFRAdapter, enUS as enUSAdapter, zhTW as zhTWAdapter } from 'date-fns/locale';
 
-// date pickers (MUI)
-import { enUS as enUSDate, frFR as frFRDate, zhHK as zhTWDate } from '@mui/x-date-pickers/locales';
 // core (MUI)
 import { enUS as enUSCore, frFR as frFRCore, zhHK as zhTWCore } from '@mui/material/locale';
+// date pickers (MUI)
+import { enUS as enUSDate, frFR as frFRDate, zhHK as zhTWDate } from '@mui/x-date-pickers/locales';
 // data grid (MUI)
 import { enUS as enUSDataGrid, frFR as frFRDataGrid, zhHK as zhTWDataGrid } from '@mui/x-data-grid';
 

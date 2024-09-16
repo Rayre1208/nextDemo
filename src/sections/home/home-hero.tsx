@@ -10,14 +10,16 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import { alpha, styled, useTheme } from '@mui/material/styles';
+
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
 import { HEADER } from 'src/layouts/config-layout';
-import { bgBlur, bgGradient, textGradient } from 'src/theme/css';
+import { bgGradient, textGradient } from 'src/theme/css';
 
+//import { bgBlur, bgGradient, textGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import { varFade, MotionContainer } from 'src/components/animate';
 
@@ -90,11 +92,13 @@ const StyledEllipseBottom = styled('div')(({ theme }) => ({
   backgroundColor: alpha(theme.palette.primary.darker, 0.12),
 }));
 
+/*
 type StyledPolygonProps = {
   opacity?: number;
   anchor?: 'left' | 'right';
 };
-
+*/
+/*
 const StyledPolygon = styled('div')<StyledPolygonProps>(
   ({ opacity = 1, anchor = 'left', theme }) => ({
     ...bgBlur({
@@ -122,7 +126,7 @@ const StyledPolygon = styled('div')<StyledPolygonProps>(
     }),
   })
 );
-
+*/
 // ----------------------------------------------------------------------
 
 export default function HomeHero() {
@@ -164,9 +168,7 @@ export default function HomeHero() {
   } as const;
 
   const opacity = 1 - percent / 100;
-  //const opacity = 1 - percent / 100;
   const hide = percent > 110;
-  //const hide = (percent > 100 && percent < 250) || percent > 300;
   const renderDescription = (
     <Stack
       alignItems="center"
@@ -382,7 +384,7 @@ export default function HomeHero() {
     </Stack>
   );
 
-  const renderPolygons = (
+  /*  const renderPolygons = (
     <>
       <StyledPolygon />
       <StyledPolygon anchor="right" opacity={0.48} />
@@ -390,7 +392,7 @@ export default function HomeHero() {
       <StyledPolygon anchor="right" sx={{ zIndex: 11, height: 24 }} />
     </>
   );
-
+*/
   const renderEllipses = (
     <>
       {mdUp && <StyledEllipseTop />}

@@ -3,34 +3,26 @@
 import { useScroll } from 'framer-motion';
 
 import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
+//import { styled } from '@mui/material/styles';
 
 import MainLayout from 'src/layouts/main';
 
 import ScrollProgress from 'src/components/scroll-progress';
 
-import HomeHero from '../home-hero';
-import HomeMinimal from '../home-minimal';
-import HomePortfolio from '../home-minimal-portfolio';
 import HomeTimeline from '../home-minimal-timeline';
-import HomeContribution from '../home-minimal-contribution';
 import HomeApplications from '../home-applications';
-import HomePricing from '../home-pricing';
-import HomeDarkMode from '../home-dark-mode';
-import HomeLookingFor from '../home-looking-for';
-import HomeForDesigner from '../home-for-designer';
-import HomeColorPresets from '../home-color-presets';
+import HomePortfolio from '../home-minimal-portfolio';
 import HomeAdvertisement from '../home-advertisement';
-import HomeCleanInterfaces from '../home-clean-interfaces';
-import HomeHugePackElements from '../home-hugepack-elements';
+import HomeContribution from '../home-minimal-contribution';
 
 // ----------------------------------------------------------------------
 
-type StyledPolygonProps = {
+/*type StyledPolygonProps = {
   anchor?: 'top' | 'bottom';
 };
+*/
 
-const StyledPolygon = styled('div')<StyledPolygonProps>(({ anchor = 'top', theme }) => ({
+/*const StyledPolygon = styled('div')<StyledPolygonProps>(({ anchor = 'top', theme }) => ({
   left: 0,
   zIndex: 9,
   height: 80,
@@ -49,7 +41,7 @@ const StyledPolygon = styled('div')<StyledPolygonProps>(({ anchor = 'top', theme
     backgroundColor: theme.palette.grey[900],
   }),
 }));
-
+*/
 // ----------------------------------------------------------------------
 
 export default function HomeView() {
@@ -78,7 +70,7 @@ export default function HomeView() {
           position: 'relative',
           bgcolor: 'background.default',
         }}
-      ></Box>
+      />
     </MainLayout>
   );
 }

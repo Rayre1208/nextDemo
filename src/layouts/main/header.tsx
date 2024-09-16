@@ -1,7 +1,10 @@
+import { useMemo } from 'react';
+
+import { bgBlur } from 'src/theme/css';
+import { paths } from 'src/routes/paths';
+
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
-import { RouterLink } from 'src/routes/components';
-import { PATH_AFTER_DEMO } from 'src/config-global';
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -10,15 +13,13 @@ import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Badge, { badgeClasses } from '@mui/material/Badge';
 
-import { useMemo } from 'react';
-import { useTranslate } from 'src/locales';
-
-import { paths } from 'src/routes/paths';
+import { RouterLink } from 'src/routes/components';
 
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { bgBlur } from 'src/theme/css';
+import { PATH_AFTER_DEMO } from 'src/config-global';
+import { useTranslate } from 'src/locales';
 
 import Logo from 'src/components/logo';
 import Label from 'src/components/label';
@@ -27,7 +28,7 @@ import NavMobile from './nav/mobile';
 import NavDesktop from './nav/desktop';
 import { HEADER } from '../config-layout';
 import { useNavConfig } from './config-navigation';
-import LoginButton from '../common/login-button';
+//import LoginButton from '../common/login-button';
 import HeaderShadow from '../common/header-shadow';
 import SettingsButton from '../common/settings-button';
 import LanguagePopover from '../common/language-popover';

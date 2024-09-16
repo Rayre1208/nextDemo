@@ -1,3 +1,3 @@
-export const translationEn = require('./en.json');
-export const translationFr = require('./fr.json');
-export const translationTw = require('./tw.json');
+export { default as translationEn } from './en.json';
+export { default as translationFr } from './fr.json';
+export { default as translationTw } from './tw.json';
