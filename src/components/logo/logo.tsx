@@ -44,7 +44,7 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
           ...sx,
         }}
         {...other}
-      ></Box>
+      />
     );
 
     if (disabledLink) {
