@@ -39,7 +39,7 @@ import FormProvider, {
   RHFMultiSelect,
   RHFAutocomplete,
   RHFMultiCheckbox,
-} from 'src/components/hook-form';
+} from 'src/components/hook-form-basic';
 
 import { IProductItem } from 'src/types/product';
 

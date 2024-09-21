@@ -1,4 +1,5 @@
-import AvailableTutors from 'src/sections/availabletutors/view/view';
+import ProductShopView from 'src/sections/availabletutors/view/product-shop-view';
+//import AvailableTutors from 'src/sections/availabletutors/view/view';
 
 // ----------------------------------------------------------------------
 
@@ -7,5 +8,5 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <AvailableTutors />;
+  return <ProductShopView />;
 }
