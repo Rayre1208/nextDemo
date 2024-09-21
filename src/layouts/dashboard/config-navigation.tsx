@@ -58,6 +58,11 @@ export function useNavData() {
             path: paths.dashboard.availabletutors,
             icon: ICONS.analytics,
           },
+          {
+            title: 'Official News',
+            path: paths.dashboard.officialnews,
+            icon: ICONS.analytics,
+          },
         ],
       },
 

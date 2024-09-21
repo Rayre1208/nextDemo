@@ -9,7 +9,7 @@ import { useSettingsContext } from 'src/components/settings';
 
 // ----------------------------------------------------------------------
 
-export default function LearningFigures() {
+export default function LearningFiguresView() {
   const settings = useSettingsContext();
 
   return (

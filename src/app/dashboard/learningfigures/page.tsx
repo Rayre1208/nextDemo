@@ -1,4 +1,4 @@
-import LearningFigures from 'src/sections/learningfigures/view';
+import LearningFiguresView from 'src/sections/learningfigures/view';
 
 // ----------------------------------------------------------------------
 
@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <LearningFigures />;
+  return <LearningFiguresView />;
 }

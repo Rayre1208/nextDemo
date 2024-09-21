@@ -1,11 +1,11 @@
-import StoredTutorsView from 'src/sections/storedtutors/view';
+import OfficialNewsView from 'src/sections/officialnews/view';
 
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Stored Tutors',
+  title: 'Dashboard: Official News',
 };
 
 export default function Page() {
-  return <StoredTutorsView />;
+  return <OfficialNewsView />;
 }

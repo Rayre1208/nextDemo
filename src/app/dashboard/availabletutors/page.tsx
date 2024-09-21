@@ -1,4 +1,4 @@
-import AvailableTutors from 'src/sections/availabletutors/view';
+import AvailableTutors from 'src/sections/availabletutors/view/view';
 
 // ----------------------------------------------------------------------
 

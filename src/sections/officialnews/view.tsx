@@ -9,12 +9,12 @@ import { useSettingsContext } from 'src/components/settings';
 
 // ----------------------------------------------------------------------
 
-export default function FourView() {
+export default function OfficialNewsView() {
   const settings = useSettingsContext();
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
-      <Typography variant="h4"> Page Four </Typography>
+      <Typography variant="h4"> Official News </Typography>
 
       <Box
         sx={{

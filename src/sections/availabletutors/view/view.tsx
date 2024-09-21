@@ -9,12 +9,12 @@ import { useSettingsContext } from 'src/components/settings';
 
 // ----------------------------------------------------------------------
 
-export default function StoredTutorsView() {
+export default function AvailableTutors() {
   const settings = useSettingsContext();
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
-      <Typography variant="h4"> Stored Tutors </Typography>
+      <Typography variant="h4"> Available Tutor </Typography>
 
       <Box
         sx={{
