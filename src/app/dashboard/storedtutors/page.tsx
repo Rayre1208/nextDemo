@@ -1,11 +1,11 @@
-import OneView from 'src/sections/learningfigures/view';
+import StoredTutors from 'src/sections/storedtutors/view';
 
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: One',
+  title: 'Dashboard: Stored Tutors',
 };
 
 export default function Page() {
-  return <OneView />;
+  return <StoredTutors />;
 }

@@ -51,11 +51,11 @@ export function useNavData() {
       {
         subheader: 'overview v5.7.0',
         items: [
-          { title: 'one', path: paths.dashboard.root, icon: ICONS.dashboard },
-          { title: 'two', path: paths.dashboard.two, icon: ICONS.ecommerce },
+          { title: 'Learning Figures', path: paths.dashboard.root, icon: ICONS.dashboard },
+          { title: 'Stored Tutors', path: paths.dashboard.storedtutors, icon: ICONS.ecommerce },
           {
-            title: 'three',
-            path: paths.dashboard.three,
+            title: 'Available Tutors',
+            path: paths.dashboard.availabletutors,
             icon: ICONS.analytics,
           },
         ],
