@@ -39,7 +39,7 @@ import FormProvider, {
   RHFMultiSelect,
   RHFAutocomplete,
   RHFMultiCheckbox,
-} from 'src/components/hook-form-basic';
+} from 'src/components/hook-form';
 
 import { IProductItem } from 'src/types/product';
 
@@ -135,7 +135,8 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
       enqueueSnackbar(currentProduct ? 'Update success!' : 'Create success!');
-      router.push(paths.dashboard.product.root);
+      router.push(paths.dashboard.root);
+      //router.push(paths.dashboard.product.root);
       console.info('DATA', data);
     } catch (error) {
       console.error(error);

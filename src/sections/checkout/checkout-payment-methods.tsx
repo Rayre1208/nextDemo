@@ -16,8 +16,8 @@ import Iconify from 'src/components/iconify';
 
 import { ICheckoutCardOption, ICheckoutPaymentOption } from 'src/types/checkout';
 
-import PaymentNewCardDialog from '../payment/payment-new-card-dialog';
-
+// import PaymentNewCardDialog from '../payment/payment-new-card-dialog';
+//<PaymentNewCardDialog open={newCard.value} onClose={newCard.onFalse} />
 // ----------------------------------------------------------------------
 
 interface Props extends CardProps {
@@ -63,8 +63,6 @@ export default function CheckoutPaymentMethods({ options, cardOptions, ...other 
           )}
         />
       </Card>
-
-      <PaymentNewCardDialog open={newCard.value} onClose={newCard.onFalse} />
     </>
   );
 }
