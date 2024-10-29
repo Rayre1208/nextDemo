@@ -21,7 +21,7 @@ import Scrollbar from 'src/components/scrollbar';
 import { ColorPicker } from 'src/components/color-utils';
 
 import { IProductFilters, IProductFilterValue } from 'src/types/product';
-import { ITutorFilters, ITutorFilterValue } from 'src/types/tutor';
+
 // ----------------------------------------------------------------------
 
 type Props = {
@@ -29,7 +29,7 @@ type Props = {
   onOpen: VoidFunction;
   onClose: VoidFunction;
   //
-  filters: ITutorFilters;
+  filters: IProductFilters;
   onFilters: (name: string, value: IProductFilterValue) => void;
   //
   canReset: boolean;
@@ -164,7 +164,7 @@ export default function ProductFilters({
           key={option}
           control={
             <Radio
-              checked={option === filters.country}
+              checked={option === filters.category}
               onClick={() => handleFilterCategory(option)}
             />
           }
@@ -200,12 +200,12 @@ export default function ProductFilters({
       </Typography>
 
       <Stack direction="row" spacing={5} sx={{ my: 2 }}>
-        <InputRange type="min" value={filters.timeZone} onFilters={onFilters} />
-        <InputRange type="max" value={filters.timeZone} onFilters={onFilters} />
+        <InputRange type="min" value={filters.priceRange} onFilters={onFilters} />
+        <InputRange type="max" value={filters.priceRange} onFilters={onFilters} />
       </Stack>
 
       <Slider
-        value={filters.timeZone}
+        value={filters.priceRange}
         onChange={handleFilterPriceRange}
         step={10}
         min={0}
@@ -235,7 +235,7 @@ export default function ProductFilters({
             cursor: 'pointer',
             typography: 'body2',
             '&:hover': { opacity: 0.48 },
-            ...(filters.age === item && {
+            ...(filters.rating === item && {
               pl: 0.5,
               pr: 0.75,
               py: 0.25,

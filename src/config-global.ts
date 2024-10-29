@@ -2,10 +2,11 @@ import { paths } from 'src/routes/paths';
 
 // API
 // ----------------------------------------------------------------------
+export const RANDOMTUTOR_API = 'https://randomuser.me';
 
 export const HOST_API = process.env.NEXT_PUBLIC_HOST_API;
 //https://api-dev-minimal-v510.vercel.app
-export const ASSETS_API = process.env.NEXT_PUBLIC_ASSETS_API;
+export const ASSETS_API = process.env.NEXT_PUBLIC_HOST_API;
 //https://api-dev-minimal-v510.vercel.app
 
 export const FIREBASE_API = {

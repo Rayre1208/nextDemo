@@ -12,7 +12,7 @@ import { ITutorFilters, ITutorFilterValue } from 'src/types/tutor';
 // ----------------------------------------------------------------------
 
 type Props = StackProps & {
-  filters: ITutorFilters;
+  filters: IProductFilters;
   onFilters: (name: string, value: IProductFilterValue) => void;
   //
   canReset: boolean;
@@ -76,9 +76,9 @@ export default function ProductFiltersResult({
           </Block>
         )}
 
-        {filters.country !== 'all' && (
-          <Block label="Country:">
-            <Chip size="small" label={filters.country} onDelete={handleRemoveCategory} />
+        {filters.category !== 'all' && (
+          <Block label="Category:">
+            <Chip size="small" label={filters.category} onDelete={handleRemoveCategory} />
           </Block>
         )}
 
@@ -106,19 +106,19 @@ export default function ProductFiltersResult({
           </Block>
         )}
 
-        {(filters.timeZone[0] !== 0 || filters.timeZone[1] !== 200) && (
-          <Block label="timeZone:">
+        {(filters.priceRange[0] !== 0 || filters.priceRange[1] !== 200) && (
+          <Block label="Price:">
             <Chip
               size="small"
-              label={`$${filters.timeZone[0]} - ${filters.timeZone[1]}`}
+              label={`$${filters.priceRange[0]} - ${filters.priceRange[1]}`}
               onDelete={handleRemovePrice}
             />
           </Block>
         )}
 
-        {!!filters.age && (
-          <Block label="Age:">
-            <Chip size="small" label={filters.age} onDelete={handleRemoveRating} />
+        {!!filters.rating && (
+          <Block label="Rating:">
+            <Chip size="small" label={filters.rating} onDelete={handleRemoveRating} />
           </Block>
         )}
 

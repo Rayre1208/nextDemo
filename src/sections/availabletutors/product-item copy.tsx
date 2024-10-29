@@ -16,32 +16,31 @@ import Iconify from 'src/components/iconify';
 import { ColorPreview } from 'src/components/color-utils';
 
 import { IProductItem } from 'src/types/product';
-import { ITutorItem } from 'src/types/tutor';
+
 import { useCheckoutContext } from '../checkout/context';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  product: ITutorItem;
+  product: IProductItem;
 };
 
 export default function ProductItem({ product }: Props) {
   const { onAddToCart } = useCheckoutContext();
 
-  const { login, name, picture, location, available, sizes, priceSale } = product;
-  // { id, name, picture, location, colors, available, sizes, priceSale, newLabel, saleLabel }
-  //  const { id, name, coverUrl, price, colors, available, sizes, priceSale, newLabel, saleLabel }
-
+  const { id, name, coverUrl, price, colors, available, sizes, priceSale, newLabel, saleLabel } =
+    product;
   console.log(name);
-  const linkTo = paths.product.details(login.uuid);
+  const linkTo = paths.product.details(id);
 
   const handleAddCart = async () => {
     const newProduct = {
-      id: login.uuid,
+      id,
       name,
-      picture,
+      coverUrl,
       available,
-      price: location.timezone,
+      price,
+      colors: [colors[0]],
       size: sizes[0],
       quantity: 1,
     };
@@ -52,26 +51,23 @@ export default function ProductItem({ product }: Props) {
     }
   };
 
-  const renderLabels = 1 && (
+  const renderLabels = (newLabel.enabled || saleLabel.enabled) && (
     <Stack
       direction="row"
       alignItems="center"
       spacing={1}
       sx={{ position: 'absolute', zIndex: 9, top: 16, right: 16 }}
     >
-      {/*
       {newLabel.enabled && (
         <Label variant="filled" color="info">
           {newLabel.content}
         </Label>
       )}
-
       {saleLabel.enabled && (
         <Label variant="filled" color="error">
           {saleLabel.content}
         </Label>
       )}
-  */}
     </Stack>
   );
 
@@ -102,8 +98,8 @@ export default function ProductItem({ product }: Props) {
 
       <Tooltip title={!available && 'Out of stock'} placement="bottom-end">
         <Image
-          alt={name.first}
-          src={picture.large}
+          alt={name}
+          src={coverUrl}
           ratio="1/1"
           sx={{
             borderRadius: 1.5,
@@ -120,10 +116,12 @@ export default function ProductItem({ product }: Props) {
   const renderContent = (
     <Stack spacing={2.5} sx={{ p: 3, pt: 2 }}>
       <Link component={RouterLink} href={linkTo} color="inherit" variant="subtitle2" noWrap>
-        {name.first}
+        {name}
       </Link>
 
       <Stack direction="row" alignItems="center" justifyContent="space-between">
+        <ColorPreview colors={colors} />
+
         <Stack direction="row" spacing={0.5} sx={{ typography: 'subtitle1' }}>
           {priceSale && (
             <Box component="span" sx={{ color: 'text.disabled', textDecoration: 'line-through' }}>

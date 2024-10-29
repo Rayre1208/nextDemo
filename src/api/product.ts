@@ -1,11 +1,31 @@
 import useSWR from 'swr';
-import { useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 
 import { fetcher, endpoints } from 'src/utils/axios';
-
+import { fetcherDemo, endpointsDemo } from 'src/utils/axiosDemo';
 import { IProductItem } from 'src/types/product';
+import { ITutorItem } from 'src/types/tutor';
 // hesitate
 // ----------------------------------------------------------------------
+
+export function useGetRamdomTutors() {
+  const URL = endpointsDemo.randomuser.users20;
+
+  const { data, isLoading, error, isValidating } = useSWR(URL, fetcherDemo);
+
+  const memoizedValue = useMemo(
+    () => ({
+      randomtutors: (data?.results as ITutorItem[]) || [],
+      randomtutorsLoading: isLoading,
+      randomtutorsError: error,
+      randomtutorsValidating: isValidating,
+      randomtutorsEmpty: !isLoading && !data?.results.length,
+    }),
+    [data?.products, error, isLoading, isValidating]
+  );
+
+  return memoizedValue;
+}
 
 export function useGetProducts() {
   const URL = endpoints.product.list;

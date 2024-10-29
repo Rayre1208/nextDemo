@@ -3,13 +3,13 @@ import Pagination, { paginationClasses } from '@mui/material/Pagination';
 
 import { IProductItem } from 'src/types/product';
 import { ITutorItem } from 'src/types/tutor';
-import ProductItem from './product-item';
+import ProductItem from './product-item copy';
 import { ProductItemSkeleton } from './product-skeleton';
 
 // ----------------------------------------------------------------------
 
 type Props = BoxProps & {
-  products: ITutorItem[];
+  products: IProductItem[];
   loading?: boolean;
 };
 
@@ -25,7 +25,7 @@ export default function ProductList({ products, loading, ...other }: Props) {
   const renderList = (
     <>
       {products.map((product) => (
-        <ProductItem key={product.login.uuid} product={product} />
+        <ProductItem key={product.id} product={product} />
       ))}
     </>
   );
