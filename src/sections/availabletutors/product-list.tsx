@@ -9,7 +9,7 @@ import { ProductItemSkeleton } from './product-skeleton';
 // ----------------------------------------------------------------------
 
 type Props = BoxProps & {
-  products: ITutorItem[];
+  products: IProductItem[];
   loading?: boolean;
 };
 
@@ -25,7 +25,7 @@ export default function ProductList({ products, loading, ...other }: Props) {
   const renderList = (
     <>
       {products.map((product) => (
-        <ProductItem key={product.login.uuid} product={product} />
+        <ProductItem key={product.id} product={product} />
       ))}
     </>
   );

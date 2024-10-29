@@ -26,7 +26,7 @@ import EmptyContent from 'src/components/empty-content';
 import { useSettingsContext } from 'src/components/settings';
 
 import { IProductItem, IProductFilters, IProductFilterValue } from 'src/types/product';
-import { ITutorItem, ITutorFilters, ITutorFilterValue } from 'src/types/tutor';
+
 import ProductList from '../product-list';
 import ProductSort from '../product-sort';
 import CartIcon from '../common/cart-icon';
@@ -34,16 +34,15 @@ import ProductSearch from '../product-search';
 import ProductFilters from '../product-filters';
 import { useCheckoutContext } from '../../checkout/context';
 import ProductFiltersResult from '../product-filters-result';
-import { time } from 'console';
 
 // ----------------------------------------------------------------------
 
-const defaultFilters: ITutorFilters = {
+const defaultFilters: IProductFilters = {
   gender: [],
   colors: [],
-  age: '',
-  country: 'all',
-  timeZone: [0, 100],
+  rating: '',
+  category: 'all',
+  priceRange: [0, 200],
 };
 
 // ----------------------------------------------------------------------
@@ -68,7 +67,7 @@ export default function ProductShopView() {
 
   const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
 
-  const handleFilters = useCallback((name: string, value: ITutorFilterValue) => {
+  const handleFilters = useCallback((name: string, value: IProductFilterValue) => {
     setFilters((prevState) => ({
       ...prevState,
       [name]: value,
@@ -80,11 +79,10 @@ export default function ProductShopView() {
   }, []);
 
   const dataFiltered = applyFilter({
-    inputData: randomtutors,
+    inputData: products,
     filters,
     sortBy,
   });
-  console.log(`KOO ${dataFiltered}`);
   const jsonString = JSON.stringify(randomtutors);
   console.log(`FOO ${jsonString}`);
 
@@ -195,15 +193,15 @@ function applyFilter({
   filters,
   sortBy,
 }: {
-  inputData: ITutorItem[];
-  filters: ITutorFilters;
+  inputData: IProductItem[];
+  filters: IProductFilters;
   sortBy: string;
 }) {
-  const { gender, country, colors, timeZone, age } = filters;
+  const { gender, category, colors, priceRange, rating } = filters;
 
-  const min = timeZone[0];
+  const min = priceRange[0];
 
-  const max = timeZone[1];
+  const max = priceRange[1];
 
   // SORT BY
   if (sortBy === 'featured') {
@@ -224,34 +222,32 @@ function applyFilter({
 
   // FILTERS
   if (gender.length) {
-    inputData = inputData.filter((randomtutors) => gender.includes(randomtutors.gender));
+    inputData = inputData.filter((product) => gender.includes(product.gender));
   }
 
-  if (country !== 'all') {
-    inputData = inputData.filter((randomtutors) => randomtutors.location.country === country);
+  if (category !== 'all') {
+    inputData = inputData.filter((product) => product.category === category);
   }
-  /*
+
   if (colors.length) {
     inputData = inputData.filter((product) =>
       product.colors.some((color) => colors.includes(color))
     );
   }
-*/
+
   if (min !== 0 || max !== 200) {
-    inputData = inputData.filter(
-      (randomtutors) => randomtutors.dob.age >= min && randomtutors.dob.age <= max
-    );
+    inputData = inputData.filter((product) => product.price >= min && product.price <= max);
   }
 
-  if (age) {
-    inputData = inputData.filter((randomtutors) => {
+  if (rating) {
+    inputData = inputData.filter((product) => {
       const convertRating = (value: string) => {
         if (value === 'up4Star') return 4;
         if (value === 'up3Star') return 3;
         if (value === 'up2Star') return 2;
         return 1;
       };
-      return randomtutors.dob.age > convertRating(age);
+      return product.totalRatings > convertRating(rating);
     });
   }
 
