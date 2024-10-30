@@ -5,7 +5,7 @@ import { fetcher, endpoints } from 'src/utils/axios';
 import { fetcherDemo, endpointsDemo } from 'src/utils/axiosDemo';
 import { IProductItem } from 'src/types/product';
 import { ITutorItem } from 'src/types/tutor';
-
+import { _productNames } from 'src/_mock/assets';
 // hesitate
 // ----------------------------------------------------------------------
 
@@ -29,9 +29,17 @@ export function useGetRamdomTutors() {
 }
 
 export function useGetProducts() {
-  const URL = endpoints.product.list;
+  //const URL = endpoints.product.list;
+  const URL = 'https://api-dev-minimal-v510.vercel.app/api/product/list';
+  const { randomtutors } = useGetRamdomTutors();
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
+
+  if (data && Array.isArray(data.products)) {
+    for (let i = 0; i < data.products.length; i++) {
+      data.products[i].randomtutors = randomtutors[i];
+    }
+  }
 
   const memoizedValue = useMemo(
     () => ({
@@ -52,15 +60,7 @@ export function useGetProducts() {
 export function useGetProduct(productId: string) {
   const URL = productId ? [endpoints.product.details, { params: { productId } }] : '';
 
-  const { randomtutors } = useGetRamdomTutors();
-
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
-
-  if (data && Array.isArray(data.product)) {
-    for (let i = 0; i < data.product.length; i++) {
-      data.product[i].randomtutors = randomtutors[i];
-    }
-  }
 
   const memoizedValue = useMemo(
     () => ({
@@ -79,16 +79,19 @@ export function useGetProduct(productId: string) {
 
 export function useSearchProducts(query: string) {
   const URL = query ? [endpoints.product.search, { params: { query } }] : '';
-
+  // randomuser firstLast Name 放assets | 搜到匹配後返回index |
   const { randomtutors } = useGetRamdomTutors();
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher, {
     keepPreviousData: true,
   });
 
-  if (data && Array.isArray(data.results)) {
+  let searchIndex: number[] | undefined;
+  searchIndex = query ? searchProductIndex(query) : undefined;
+
+  if (data && searchIndex && Array.isArray(data.results)) {
     for (let i = 0; i < data.results.length; i++) {
-      data.results[i].randomtutors = randomtutors[i];
+      data.results[i].randomtutors = randomtutors[searchIndex[i]];
     }
   }
 
@@ -102,6 +105,19 @@ export function useSearchProducts(query: string) {
     }),
     [data?.results, error, isLoading, isValidating]
   );
+
+  function searchProductIndex(query: string): number[] {
+    // 將搜尋字串轉換為小寫，方便不區分大小寫的比較
+    const queryLowerCase = query.toLowerCase();
+
+    // 篩選出包含搜尋字串的產品，並返回其索引
+    return _productNames.reduce((result: number[], product: string, index: number) => {
+      if (product.toLowerCase().includes(queryLowerCase)) {
+        result.push(index);
+      }
+      return result;
+    }, []);
+  }
 
   return memoizedValue;
 }

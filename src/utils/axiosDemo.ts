@@ -28,6 +28,6 @@ export const fetcherDemo = async (args: string | [string, AxiosRequestConfig]) =
 export const endpointsDemo = {
   randomuser: {
     user: '/api/1.4/',
-    users20: '/api/1.4/?results=20&seed=foobar',
+    users20: '/api/1.4/?results=20&nat=us,gb,au,ca,de,&seed=1',
   },
 };

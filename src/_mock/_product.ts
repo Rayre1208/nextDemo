@@ -68,6 +68,7 @@ export const PRODUCT_SORT_OPTIONS = [
   { value: 'newest', label: 'Newest' },
   { value: 'priceDesc', label: 'Price: High - Low' },
   { value: 'priceAsc', label: 'Price: Low - High' },
+  { value: 'origin', label: 'Origin' },
 ];
 
 export const PRODUCT_CATEGORY_GROUP_OPTIONS = [

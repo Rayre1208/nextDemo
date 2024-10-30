@@ -41,7 +41,7 @@ export default function ProductItem({ product }: Props) {
     saleLabel,
     randomtutors,
   } = product;
-
+  console.log(name);
   const linkTo = paths.product.details(id);
 
   const handleAddCart = async () => {
@@ -71,12 +71,12 @@ export default function ProductItem({ product }: Props) {
     >
       {newLabel.enabled && (
         <Label variant="filled" color="info">
-          {`Super Tutor`}
+          {newLabel.content}
         </Label>
       )}
       {saleLabel.enabled && (
         <Label variant="filled" color="error">
-          {'NEW'}
+          {saleLabel.content}
         </Label>
       )}
     </Stack>
@@ -110,10 +110,14 @@ export default function ProductItem({ product }: Props) {
       <Tooltip title={!available && 'Out of stock'} placement="bottom-end">
         <Image
           alt={name}
-          src={product.randomtutors?.picture?.large}
+          src={coverUrl}
           ratio="1/1"
           sx={{
             borderRadius: 1.5,
+            ...(!available && {
+              opacity: 0.48,
+              filter: 'grayscale(1)',
+            }),
           }}
         />
       </Tooltip>
@@ -122,21 +126,21 @@ export default function ProductItem({ product }: Props) {
 
   const renderContent = (
     <Stack spacing={2.5} sx={{ p: 3, pt: 2 }}>
-      <Link
-        component={RouterLink}
-        href={linkTo}
-        color="inherit"
-        style={{ fontWeight: 'bold', fontSize: '18px' }}
-        noWrap
-      >
-        {`${randomtutors?.name.first} ${randomtutors?.name.last}`}
+      <Link component={RouterLink} href={linkTo} color="inherit" variant="subtitle2" noWrap>
+        {name}
       </Link>
 
       <Stack direction="row" alignItems="center" justifyContent="space-between">
         <ColorPreview colors={colors} />
 
         <Stack direction="row" spacing={0.5} sx={{ typography: 'subtitle1' }}>
-          <Box component="span">{`👍 ${product.totalRatings * 2}`}</Box>
+          {priceSale && (
+            <Box component="span" sx={{ color: 'text.disabled', textDecoration: 'line-through' }}>
+              {fCurrency(priceSale)}
+            </Box>
+          )}
+
+          <Box component="span">{fCurrency(price)}</Box>
         </Stack>
       </Stack>
     </Stack>

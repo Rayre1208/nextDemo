@@ -54,7 +54,7 @@ export default function ProductShopView() {
 
   const openFilters = useBoolean();
 
-  const [sortBy, setSortBy] = useState('featured');
+  const [sortBy, setSortBy] = useState('origin');
 
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -63,13 +63,9 @@ export default function ProductShopView() {
   const [filters, setFilters] = useState(defaultFilters);
 
   const { products, productsLoading, productsEmpty } = useGetProducts();
+
   const { randomtutors, randomtutorsLoading, randomtutorsEmpty } = useGetRamdomTutors();
-  /*
-  for (let i = 0; i < products.length; i++) {
-    products[i].randomtutors = randomtutors[i];
-  }
-  */
-  console.log(`FIXSO ${JSON.stringify(products)}`);
+
   const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
 
   const handleFilters = useCallback((name: string, value: IProductFilterValue) => {
@@ -82,13 +78,13 @@ export default function ProductShopView() {
   const handleResetFilters = useCallback(() => {
     setFilters(defaultFilters);
   }, []);
-
+  console.log(`what is before enter datafiltered ${JSON.stringify(products[0])}`);
   const dataFiltered = applyFilter({
     inputData: products,
     filters,
     sortBy,
   });
-
+  console.log(`what is after enter datafiltered ${JSON.stringify(dataFiltered[0])}`);
   const canReset = !isEqual(defaultFilters, filters);
 
   const notFound = !dataFiltered.length && canReset;
@@ -207,6 +203,11 @@ function applyFilter({
   const max = priceRange[1];
 
   // SORT BY
+
+  if (sortBy === 'origin') {
+    inputData = [...inputData];
+  }
+
   if (sortBy === 'featured') {
     inputData = orderBy(inputData, ['totalSold'], ['desc']);
   }
