@@ -64,7 +64,12 @@ export default function ProductShopView() {
 
   const { products, productsLoading, productsEmpty } = useGetProducts();
   const { randomtutors, randomtutorsLoading, randomtutorsEmpty } = useGetRamdomTutors();
-
+  /*
+  for (let i = 0; i < products.length; i++) {
+    products[i].randomtutors = randomtutors[i];
+  }
+  */
+  console.log(`FIXSO ${JSON.stringify(products)}`);
   const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
 
   const handleFilters = useCallback((name: string, value: IProductFilterValue) => {
@@ -83,8 +88,6 @@ export default function ProductShopView() {
     filters,
     sortBy,
   });
-  const jsonString = JSON.stringify(randomtutors);
-  console.log(`FOO ${jsonString}`);
 
   const canReset = !isEqual(defaultFilters, filters);
 

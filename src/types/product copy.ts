@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------
-import { ITutorItem } from 'src/types/tutor';
+
 export type IProductFilterValue = string | string[] | number | number[];
 
 export type IProductFilters = {
@@ -70,7 +70,6 @@ export type IProductItem = {
     enabled: boolean;
     content: string;
   };
-  randomtutors?: ITutorItem; //
 };
 
 export type IProductTableFilterValue = string | string[];

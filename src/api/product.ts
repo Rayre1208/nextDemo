@@ -5,6 +5,7 @@ import { fetcher, endpoints } from 'src/utils/axios';
 import { fetcherDemo, endpointsDemo } from 'src/utils/axiosDemo';
 import { IProductItem } from 'src/types/product';
 import { ITutorItem } from 'src/types/tutor';
+
 // hesitate
 // ----------------------------------------------------------------------
 
@@ -51,7 +52,15 @@ export function useGetProducts() {
 export function useGetProduct(productId: string) {
   const URL = productId ? [endpoints.product.details, { params: { productId } }] : '';
 
+  const { randomtutors } = useGetRamdomTutors();
+
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
+
+  if (data && Array.isArray(data.product)) {
+    for (let i = 0; i < data.product.length; i++) {
+      data.product[i].randomtutors = randomtutors[i];
+    }
+  }
 
   const memoizedValue = useMemo(
     () => ({
@@ -71,9 +80,17 @@ export function useGetProduct(productId: string) {
 export function useSearchProducts(query: string) {
   const URL = query ? [endpoints.product.search, { params: { query } }] : '';
 
+  const { randomtutors } = useGetRamdomTutors();
+
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher, {
     keepPreviousData: true,
   });
+
+  if (data && Array.isArray(data.results)) {
+    for (let i = 0; i < data.results.length; i++) {
+      data.results[i].randomtutors = randomtutors[i];
+    }
+  }
 
   const memoizedValue = useMemo(
     () => ({

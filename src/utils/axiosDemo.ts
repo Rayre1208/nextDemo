@@ -24,10 +24,10 @@ export const fetcherDemo = async (args: string | [string, AxiosRequestConfig]) =
 };
 
 // ----------------------------------------------------------------------
-
+// https://randomuser.me/documentation#format  API參數使用說明
 export const endpointsDemo = {
   randomuser: {
     user: '/api/1.4/',
-    users20: '/api/1.4/?results=20',
+    users20: '/api/1.4/?results=20&seed=foobar',
   },
 };
