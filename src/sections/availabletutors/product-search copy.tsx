@@ -31,7 +31,7 @@ export default function ProductSearch({ query, results, onSearch, hrefItem, load
   const handleClick = (id: string) => {
     router.push(hrefItem(id));
   };
-  console.log(`WHAT IS THIS ${JSON.stringify(results)}`);
+
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (query) {
       if (event.key === 'Enter') {
@@ -92,14 +92,13 @@ export default function ProductSearch({ query, results, onSearch, hrefItem, load
       renderOption={(props, product, { inputValue }) => {
         const matches = match(product.name, inputValue);
         const parts = parse(product.name, matches);
-        const TOO = JSON.stringify(product);
-        console.log(`HOOOOOOOOOOOOO ${TOO}`);
+
         return (
           <Box component="li" {...props} onClick={() => handleClick(product.id)} key={product.id}>
             <Avatar
               key={product.id}
-              alt={product.randomtutors?.name.full}
-              src={product.randomtutors?.picture?.large}
+              alt={product.name}
+              src={product.coverUrl}
               variant="rounded"
               sx={{
                 width: 48,

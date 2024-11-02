@@ -101,11 +101,15 @@ export function useGetProduct(productId: string) {
 // ----------------------------------------------------------------------
 
 export function useSearchProducts(query: string) {
-  const URL = query ? [endpoints.product.search, { params: { query } }] : '';
-
+  const URL = query ? [endpointsVercel.randomuserVercel.root, { params: { query } }] : '';
+  //const URL = endpointsVercel.randomuserVercel.root;
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcherVercel, {
     keepPreviousData: true,
   });
+
+  //const URL = endpointsVercel.randomuserVercel.root;
+  //const { data, isLoading, error, isValidating } = useSWR(URL, fetcherVercel);
+
   console.log(`Kool ${JSON.stringify(data)}`);
 
   const memoizedValue = useMemo(
@@ -114,7 +118,7 @@ export function useSearchProducts(query: string) {
       searchLoading: isLoading,
       searchError: error,
       searchValidating: isValidating,
-      searchEmpty: !isLoading && !data?.results.length,
+      searchEmpty: !isLoading && (!data?.results?.length ?? true),
     }),
     [data?.results, error, isLoading, isValidating]
   );
@@ -127,7 +131,7 @@ export function useSearchProducts(query: string) {
 export function useSearchProductsOrigin(query: string) {
   const URL = query ? [endpoints.product.search, { params: { query } }] : '';
   // randomuser firstLast Name 放assets | 搜到匹配後返回index |
-  const { randomtutors } = useGetRamdomTutorsVercel();
+  const { randomtutors } = useGetRamdomTutors();
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher, {
     keepPreviousData: true,
@@ -141,6 +145,7 @@ export function useSearchProductsOrigin(query: string) {
       data.results[i].randomtutors = randomtutors[searchIndex[i]];
     }
   }
+  console.log(`Wow ${JSON.stringify(data)}`);
 
   const memoizedValue = useMemo(
     () => ({

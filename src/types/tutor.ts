@@ -47,6 +47,7 @@ export type ITutorItem = {
     title: string;
     first: string;
     last: string;
+    full: string;
   };
   location: {
     street: {
