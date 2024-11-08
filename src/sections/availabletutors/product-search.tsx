@@ -35,7 +35,9 @@ export default function ProductSearch({ query, results, onSearch, hrefItem, load
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (query) {
       if (event.key === 'Enter') {
-        const selectItem = results.filter((product) => product.name === query)[0];
+        const selectItem = results.filter(
+          (product) => product.randomtutors?.name.full === query
+        )[0];
 
         handleClick(selectItem.id);
       }
@@ -50,7 +52,7 @@ export default function ProductSearch({ query, results, onSearch, hrefItem, load
       popupIcon={null}
       options={results}
       onInputChange={(event, newValue) => onSearch(newValue)}
-      getOptionLabel={(option) => option.name}
+      getOptionLabel={(option) => option.randomtutors?.name.full || ''}
       noOptionsText={<SearchNotFound query={query} sx={{ bgcolor: 'unset' }} />}
       isOptionEqualToValue={(option, value) => option.id === value.id}
       slotProps={{
@@ -90,8 +92,11 @@ export default function ProductSearch({ query, results, onSearch, hrefItem, load
         />
       )}
       renderOption={(props, product, { inputValue }) => {
-        const matches = match(product.name, inputValue);
-        const parts = parse(product.name, matches);
+        const fullName = product.randomtutors?.name.full || '';
+        const matches = match(fullName, inputValue);
+        const parts = parse(fullName, matches);
+        //const matches = match(product.name, inputValue);
+        //const parts = parse(product.name, matches);
         const TOO = JSON.stringify(product);
         console.log(`HOOOOOOOOOOOOO ${TOO}`);
         return (

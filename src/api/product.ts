@@ -118,7 +118,7 @@ export function useSearchProducts(query: string) {
       searchLoading: isLoading,
       searchError: error,
       searchValidating: isValidating,
-      searchEmpty: !isLoading && (!data?.results?.length ?? true),
+      searchEmpty: !isLoading && !(data?.results && data.results.length > 0),
     }),
     [data?.results, error, isLoading, isValidating]
   );
