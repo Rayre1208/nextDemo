@@ -4,6 +4,7 @@ import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
+import { useTheme } from '@mui/material/styles';
 
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
@@ -26,7 +27,9 @@ type Props = {
 };
 
 export default function ProductItem({ product }: Props) {
+  const ratingValue = (Math.sqrt(product.totalRatings * 20) * 10).toFixed(0);
   const { onAddToCart } = useCheckoutContext();
+  const theme = useTheme();
 
   const {
     id,
@@ -41,6 +44,21 @@ export default function ProductItem({ product }: Props) {
     saleLabel,
     randomtutors,
   } = product;
+
+  const baseOptions = {
+    // Colors
+    colors: [
+      theme.palette.primary.main,
+      theme.palette.warning.main,
+      theme.palette.info.main,
+      theme.palette.error.main,
+      theme.palette.success.main,
+      theme.palette.warning.dark,
+      theme.palette.success.darker,
+      theme.palette.info.dark,
+      theme.palette.info.darker,
+    ],
+  };
 
   const linkTo = paths.product.details(id);
 
@@ -82,6 +100,37 @@ export default function ProductItem({ product }: Props) {
     </Stack>
   );
 
+  const renderOnlineLabels = (
+    <Stack
+      direction="row"
+      alignItems="center"
+      spacing={1}
+      sx={{ position: 'absolute', zIndex: 9, top: 16, left: 16 }}
+    >
+      {available >= 1 ? (
+        <Box
+          sx={{
+            width: 16,
+            height: 16,
+            borderRadius: '50%',
+            backgroundColor: theme.palette.success.main,
+            border: '2px solid white',
+          }}
+        />
+      ) : (
+        <Box
+          sx={{
+            width: 16,
+            height: 16,
+            borderRadius: '50%',
+            backgroundColor: theme.palette.grey[700],
+            border: '2px solid white',
+          }}
+        />
+      )}
+    </Stack>
+  );
+
   const renderImg = (
     <Box sx={{ position: 'relative', p: 1 }}>
       {!!available && (
@@ -103,7 +152,7 @@ export default function ProductItem({ product }: Props) {
               }),
           }}
         >
-          <Iconify icon="solar:cart-plus-bold" width={24} />
+          <Iconify icon="solar:call-medicine-bold-duotone" width={28} />
         </Fab>
       )}
 
@@ -133,10 +182,13 @@ export default function ProductItem({ product }: Props) {
       </Link>
 
       <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <ColorPreview colors={colors} />
+        <Iconify
+          icon={`flagpack:${randomtutors?.nat.toLowerCase()}`}
+          sx={{ borderRadius: 0.65, width: 28 }}
+        />
 
         <Stack direction="row" spacing={0.5} sx={{ typography: 'subtitle1' }}>
-          <Box component="span">{`👍 ${product.totalRatings * 2}`}</Box>
+          <Box component="span">{`👍 ${ratingValue} % `}</Box>
         </Stack>
       </Stack>
     </Stack>
@@ -151,7 +203,7 @@ export default function ProductItem({ product }: Props) {
       }}
     >
       {renderLabels}
-
+      {renderOnlineLabels}
       {renderImg}
 
       {renderContent}

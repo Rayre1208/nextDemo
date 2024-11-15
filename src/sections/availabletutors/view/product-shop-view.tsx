@@ -64,8 +64,6 @@ export default function ProductShopView() {
 
   const { products, productsLoading, productsEmpty } = useGetProducts();
 
-  const { randomtutors, randomtutorsLoading, randomtutorsEmpty } = useGetRamdomTutors();
-
   const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
 
   const handleFilters = useCallback((name: string, value: IProductFilterValue) => {
