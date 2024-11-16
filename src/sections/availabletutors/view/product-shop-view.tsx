@@ -20,7 +20,7 @@ import {
   PRODUCT_GENDER_OPTIONS,
   PRODUCT_RATING_OPTIONS,
   PRODUCT_CATEGORY_OPTIONS,
-} from 'src/_mock';
+} from 'src/_mock/_tutor';
 
 import EmptyContent from 'src/components/empty-content';
 import { useSettingsContext } from 'src/components/settings';
@@ -215,11 +215,11 @@ function applyFilter({
   }
 
   if (sortBy === 'priceDesc') {
-    inputData = orderBy(inputData, ['price'], ['desc']);
+    inputData = orderBy(inputData, ['randomtutors.dob.age'], ['desc']);
   }
 
   if (sortBy === 'priceAsc') {
-    inputData = orderBy(inputData, ['price'], ['asc']);
+    inputData = orderBy(inputData, ['randomtutors.dob.age'], ['asc']);
   }
 
   // FILTERS

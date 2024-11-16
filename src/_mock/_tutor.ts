@@ -3,7 +3,6 @@
 export const PRODUCT_GENDER_OPTIONS = [
   { label: 'Men', value: 'Men' },
   { label: 'Women', value: 'Women' },
-  { label: 'Kids', value: 'Kids' },
 ];
 
 export const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
@@ -64,6 +63,13 @@ export const PRODUCT_PUBLISH_OPTIONS = [
 ];
 
 export const PRODUCT_SORT_OPTIONS = [
+  { value: 'featured', label: 'Featured' },
+  { value: 'newest', label: 'Newest' },
+  { value: 'priceDesc', label: 'Exp: High - Low' },
+  { value: 'priceAsc', label: 'Exp: Low - High' },
+];
+
+export const PRODUCT_SORT_OPTIONS_Origin = [
   { value: 'featured', label: 'Featured' },
   { value: 'newest', label: 'Newest' },
   { value: 'priceDesc', label: 'Price: High - Low' },

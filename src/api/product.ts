@@ -79,6 +79,34 @@ export function useGetProducts() {
 }
 
 // ----------------------------------------------------------------------
+export function useGetProductsOrigin() {
+  //const URL = endpoints.product.list;
+  const URL = 'https://api-dev-minimal-v510.vercel.app/api/product/list';
+  const { randomtutors } = useGetRamdomTutors();
+
+  const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
+
+  if (data && Array.isArray(data.products)) {
+    for (let i = 0; i < data.products.length; i++) {
+      data.products[i].randomtutors = randomtutors[i];
+    }
+  }
+
+  const memoizedValue = useMemo(
+    () => ({
+      products: (data?.products as IProductItem[]) || [],
+      productsLoading: isLoading,
+      productsError: error,
+      productsValidating: isValidating,
+      productsEmpty: !isLoading && !data?.products.length,
+    }),
+    [data?.products, error, isLoading, isValidating]
+  );
+
+  return memoizedValue;
+}
+
+// ----------------------------------------------------------------------
 
 export function useGetProduct(productId: string) {
   const URL = productId ? [endpoints.product.details, { params: { productId } }] : '';
@@ -110,8 +138,6 @@ export function useSearchProducts(query: string) {
   //const URL = endpointsVercel.randomuserVercel.root;
   //const { data, isLoading, error, isValidating } = useSWR(URL, fetcherVercel);
 
-  console.log(`Kool ${JSON.stringify(data)}`);
-
   const memoizedValue = useMemo(
     () => ({
       searchResults: (data?.products as IProductItem[]) || [],
@@ -130,7 +156,6 @@ export function useSearchProducts(query: string) {
 
 export function useSearchProductsOrigin(query: string) {
   const URL = query ? [endpoints.product.search, { params: { query } }] : '';
-  // randomuser firstLast Name 放assets | 搜到匹配後返回index |
   const { randomtutors } = useGetRamdomTutors();
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher, {
