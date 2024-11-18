@@ -76,13 +76,17 @@ export default function ProductShopView() {
   const handleResetFilters = useCallback(() => {
     setFilters(defaultFilters);
   }, []);
+
   console.log(`what is before enter datafiltered ${JSON.stringify(products[0])}`);
+
   const dataFiltered = applyFilter({
     inputData: products,
     filters,
     sortBy,
   });
+
   console.log(`what is after enter datafiltered ${JSON.stringify(dataFiltered[0])}`);
+
   const canReset = !isEqual(defaultFilters, filters);
 
   const notFound = !dataFiltered.length && canReset;
@@ -232,6 +236,7 @@ function applyFilter({
   }
 
   if (colors.length) {
+    console.log(`what is the colors ${colors}`);
     inputData = inputData.filter((product) =>
       product.colors.some((color) => colors.includes(color))
     );

@@ -20,6 +20,8 @@ export const PRODUCT_COLOR_OPTIONS = [
   '#FFC107',
 ];
 
+export const TUTORS_NAT_OPTIONS = ['US', 'GB', 'AU', 'CA', 'DE', 'FR', 'NL', 'NZ', 'IE'];
+
 export const PRODUCT_COLOR_NAME_OPTIONS = [
   { value: 'red', label: 'Red' },
   { value: 'blue', label: 'Blue' },
