@@ -44,7 +44,6 @@ const defaultFilters: IProductFilters = {
   rating: '',
   category: 'all',
   priceRange: [0, 200],
-  tutorNat: [],
 };
 
 // ----------------------------------------------------------------------

@@ -10,7 +10,7 @@ import { ColorPickerProps } from './types';
 // ----------------------------------------------------------------------
 
 const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
-  ({ colors, tutorsNAT, selected, onSelectColor, limit = 'auto', sx, ...other }, ref) => {
+  ({ colors, selected, onSelectColor, limit = 'auto', sx, ...other }, ref) => {
     const singleSelect = typeof selected === 'string';
 
     const handleSelect = useCallback(

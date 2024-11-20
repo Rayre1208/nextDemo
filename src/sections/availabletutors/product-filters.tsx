@@ -19,7 +19,7 @@ import InputBase, { inputBaseClasses } from '@mui/material/InputBase';
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 import { ColorPicker } from 'src/components/color-utils';
-
+import { TutorNAT } from 'src/components/tutorNat-utils';
 import { IProductFilters, IProductFilterValue } from 'src/types/product';
 
 // ----------------------------------------------------------------------
@@ -42,6 +42,7 @@ type Props = {
   categoryOptions: string[];
   ratingOptions: string[];
   colorOptions: string[];
+  tutorNATOptions: string[];
 };
 
 export default function ProductFilters({
@@ -56,6 +57,7 @@ export default function ProductFilters({
   onResetFilters,
   //
   colorOptions,
+  tutorNATOptions,
   genderOptions,
   ratingOptions,
   categoryOptions,
@@ -91,6 +93,13 @@ export default function ProductFilters({
   const handleFilterColors = useCallback(
     (newValue: string | string[]) => {
       onFilters('colors', newValue);
+    },
+    [onFilters]
+  );
+
+  const handleFilterTutorNat = useCallback(
+    (newValue: string | string[]) => {
+      onFilters('tutorNat', newValue);
     },
     [onFilters]
   );
@@ -188,7 +197,19 @@ export default function ProductFilters({
         selected={filters.colors}
         onSelectColor={(colors) => handleFilterColors(colors)}
         colors={colorOptions}
+        tutorsNAT={tutorNATOptions}
         limit={6}
+      />
+      <Typography variant="subtitle2" sx={{ mb: 1 }}>
+        Tutor
+      </Typography>
+      <TutorNAT
+        selected={filters.colors}
+        tutorSelected={filters.tutorNat}
+        onSelectTutorNat={(colors) => handleFilterTutorNat(colors)}
+        colors={colorOptions}
+        tutorsNAT={tutorNATOptions}
+        limit={5}
       />
     </Stack>
   );

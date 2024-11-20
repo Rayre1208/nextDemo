@@ -5,29 +5,29 @@ import { alpha } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 
 import Iconify from '../iconify';
-import { ColorPickerProps } from './types';
+import { TutorNATProps } from './types';
 
 // ----------------------------------------------------------------------
 
-const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
-  ({ colors, tutorsNAT, selected, onSelectColor, limit = 'auto', sx, ...other }, ref) => {
+const TutorNAT = forwardRef<HTMLDivElement, TutorNATProps>(
+  ({ colors, tutorsNAT, selected, onSelectTutorNat, limit = 'auto', sx, ...other }, ref) => {
     const singleSelect = typeof selected === 'string';
 
     const handleSelect = useCallback(
       (color: string) => {
         if (singleSelect) {
           if (color !== selected) {
-            onSelectColor(color);
+            onSelectTutorNat(color);
           }
         } else {
           const newSelected = selected.includes(color)
             ? selected.filter((value) => value !== color)
             : [...selected, color];
 
-          onSelectColor(newSelected);
+          onSelectTutorNat(newSelected);
         }
       },
-      [onSelectColor, selected, singleSelect]
+      [onSelectTutorNat, selected, singleSelect]
     );
 
     return (
@@ -100,4 +100,4 @@ const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
   }
 );
 
-export default ColorPicker;
+export default TutorNAT;
