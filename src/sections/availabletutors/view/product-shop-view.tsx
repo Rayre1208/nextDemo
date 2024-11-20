@@ -201,10 +201,9 @@ function applyFilter({
   filters: IProductFilters;
   sortBy: string;
 }) {
-  const { gender, category, colors, priceRange, rating } = filters;
+  const { gender, category, colors, priceRange, rating, tutorNat } = filters; // 添加 tutorNat
 
   const min = priceRange[0];
-
   const max = priceRange[1];
 
   // SORT BY
@@ -239,7 +238,6 @@ function applyFilter({
   }
 
   if (colors.length) {
-    console.log(`what is the colors ${colors}`);
     inputData = inputData.filter((product) =>
       product.colors.some((color) => colors.includes(color))
     );
@@ -259,6 +257,13 @@ function applyFilter({
       };
       return product.totalRatings > convertRating(rating);
     });
+  }
+
+  if (tutorNat.length) {
+    // 添加 tutorNat 的篩選邏輯
+    inputData = inputData.filter(
+      (product) => product.randomtutors && tutorNat.includes(product.randomtutors.nat)
+    );
   }
 
   return inputData;

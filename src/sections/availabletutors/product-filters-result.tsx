@@ -8,7 +8,7 @@ import Stack, { StackProps } from '@mui/material/Stack';
 import Iconify from 'src/components/iconify';
 
 import { IProductFilters, IProductFilterValue } from 'src/types/product';
-import { ITutorFilters, ITutorFilterValue } from 'src/types/tutor';
+
 // ----------------------------------------------------------------------
 
 type Props = StackProps & {
@@ -53,12 +53,17 @@ export default function ProductFiltersResult({
     onFilters('rating', '');
   };
 
+  const handleRemoveTutorNat = (inputValue: string) => {
+    const newValue = filters.tutorNat.filter((item) => item !== inputValue);
+    onFilters('tutorNat', newValue);
+  };
+
   return (
     <Stack spacing={1.5} {...other}>
       <Box sx={{ typography: 'body2' }}>
         <strong>{results}</strong>
         <Box component="span" sx={{ color: 'text.secondary', ml: 0.25 }}>
-          results foundt
+          results found
         </Box>
       </Box>
 
@@ -101,6 +106,19 @@ export default function ProductFiltersResult({
                   />
                 }
                 onDelete={() => handleRemoveColor(item)}
+              />
+            ))}
+          </Block>
+        )}
+
+        {!!filters.tutorNat.length && (
+          <Block label="Tutor Nationality:">
+            {filters.tutorNat.map((item) => (
+              <Chip
+                key={item}
+                label={item}
+                size="small"
+                onDelete={() => handleRemoveTutorNat(item)}
               />
             ))}
           </Block>
