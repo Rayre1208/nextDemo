@@ -8,7 +8,7 @@ export type IProductFilters = {
   category: string;
   colors: string[];
   priceRange: number[];
-  tutorNat?: string[];
+  tutorNat: string[];
 };
 
 // ----------------------------------------------------------------------

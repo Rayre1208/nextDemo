@@ -197,19 +197,17 @@ export default function ProductFilters({
         selected={filters.colors}
         onSelectColor={(colors) => handleFilterColors(colors)}
         colors={colorOptions}
-        tutorsNAT={tutorNATOptions}
         limit={6}
       />
       <Typography variant="subtitle2" sx={{ mb: 1 }}>
         Tutor
       </Typography>
       <TutorNAT
-        selected={filters.colors}
-        tutorSelected={filters.tutorNat}
-        onSelectTutorNat={(colors) => handleFilterTutorNat(colors)}
         colors={colorOptions}
+        selected={filters.tutorNat}
+        onSelectTutorNat={(tutorNat) => handleFilterTutorNat(tutorNat)}
         tutorsNAT={tutorNATOptions}
-        limit={5}
+        limit={6}
       />
     </Stack>
   );

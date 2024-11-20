@@ -1,27 +1,28 @@
 import { forwardRef, useCallback } from 'react';
+
 import Stack from '@mui/material/Stack';
 import { alpha } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
-import Box from '@mui/material/Box';
+
 import Iconify from '../iconify';
 import { TutorNATProps } from './types';
 
 // ----------------------------------------------------------------------
 
 const TutorNAT = forwardRef<HTMLDivElement, TutorNATProps>(
-  ({ tutorsNAT, selected, onSelectTutorNat, limit = 'auto', sx, ...other }, ref) => {
+  ({ colors, tutorsNAT, selected, onSelectTutorNat, limit = 'auto', sx, ...other }, ref) => {
     const singleSelect = typeof selected === 'string';
 
     const handleSelect = useCallback(
-      (nat: string) => {
+      (color: string) => {
         if (singleSelect) {
-          if (nat !== selected) {
-            onSelectTutorNat(nat);
+          if (color !== selected) {
+            onSelectTutorNat(color);
           }
         } else {
-          const newSelected = selected.includes(nat)
-            ? selected.filter((value) => value !== nat)
-            : [...selected, nat];
+          const newSelected = selected.includes(color)
+            ? selected.filter((value) => value !== color)
+            : [...selected, color];
 
           onSelectTutorNat(newSelected);
         }
@@ -44,19 +45,19 @@ const TutorNAT = forwardRef<HTMLDivElement, TutorNATProps>(
         }}
         {...other}
       >
-        {tutorsNAT.map((nat) => {
-          const hasSelected = singleSelect ? selected === nat : selected.includes(nat);
+        {colors.map((color) => {
+          const hasSelected = singleSelect ? selected === color : selected.includes(color);
 
           return (
             <ButtonBase
-              key={nat}
+              key={color}
               sx={{
                 width: 36,
                 height: 36,
                 borderRadius: '50%',
               }}
               onClick={() => {
-                handleSelect(nat);
+                handleSelect(color);
               }}
             >
               <Stack
@@ -65,10 +66,13 @@ const TutorNAT = forwardRef<HTMLDivElement, TutorNATProps>(
                 sx={{
                   width: 20,
                   height: 20,
+                  bgcolor: color,
                   borderRadius: '50%',
                   border: (theme) => `solid 1px ${alpha(theme.palette.grey[500], 0.16)}`,
                   ...(hasSelected && {
-                    transform: 'scale(1.4)',
+                    transform: 'scale(1.3)',
+                    boxShadow: `4px 4px 8px 0 ${alpha(color, 0.48)}`,
+                    outline: `solid 2px ${alpha(color, 0.08)}`,
                     transition: (theme) =>
                       theme.transitions.create('all', {
                         duration: theme.transitions.duration.shortest,
@@ -77,18 +81,14 @@ const TutorNAT = forwardRef<HTMLDivElement, TutorNATProps>(
                 }}
               >
                 <Iconify
-                  icon={`flagpack:${nat.toLowerCase()}`}
-                  width={hasSelected ? 24 : 20}
+                  width={hasSelected ? 12 : 0}
+                  icon="eva:checkmark-fill"
                   sx={{
+                    color: (theme) => theme.palette.getContrastText(color),
                     transition: (theme) =>
                       theme.transitions.create('all', {
                         duration: theme.transitions.duration.shortest,
                       }),
-                    ...(hasSelected && {
-                      borderBottom: '2.5px solid',
-                      borderColor: 'primary.main',
-                      backgroundColor: alpha('#000000', 0.08),
-                    }),
                   }}
                 />
               </Stack>
