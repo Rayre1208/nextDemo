@@ -4,12 +4,17 @@ import { paths } from 'src/routes/paths';
 // ----------------------------------------------------------------------
 export const RANDOMTUTOR_API = 'https://randomuser.me';
 export const RANDOMTUTOR_API_Vercel = 'https://express-server-beige.vercel.app'; //要用Protection Bypass for Automation
+
+export const RANDOMTUTOR_API_MacMini = 'https://torian.pages.dev';
 //https://express-server-beige.vercel.app
 //https://express-server-beige.vercel.app/?vercelToolbarCode=kvq6Hoqj9_4T7Vq
-export const HOST_API = process.env.NEXT_PUBLIC_HOST_API;
+//export const HOST_API = process.env.NEXT_PUBLIC_HOST_API;
 //https://api-dev-minimal-v510.vercel.app
-export const ASSETS_API = process.env.NEXT_PUBLIC_HOST_API;
+export const HOST_API = 'https://api-dev-minimal-v620.pages.dev';
+export const MAC_MINI_API = 'https://api-dev-minimal-v620.pages.dev';
+//export const ASSETS_API = process.env.NEXT_PUBLIC_HOST_API;
 //https://api-dev-minimal-v510.vercel.app
+export const ASSETS_API = 'https://api-dev-minimal-v610.vercel.app/';
 
 export const FIREBASE_API = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -18,7 +23,7 @@ export const FIREBASE_API = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUnpREMENT_ID,
 };
 
 export const AMPLIFY_API = {

@@ -3,7 +3,6 @@
 import { useMemo, useEffect, useReducer, useCallback } from 'react';
 
 import axios, { endpoints } from 'src/utils/axios';
-
 import { useMockedUser } from 'src/hooks/use-mocked-user'; // 新增這行
 
 import { AuthContext } from './auth-context';
@@ -78,7 +77,6 @@ const reducer = (state: AuthStateType, action: ActionsType) => {
 // ----------------------------------------------------------------------
 
 const STORAGE_KEY = 'accessToken';
-const MOCK_ACCESS_TOKEN = 'mock-access-token-from-login';
 
 type Props = {
   children: React.ReactNode;
@@ -94,20 +92,18 @@ export function AuthProvider({ children }: Props) {
     try {
       const accessToken = sessionStorage.getItem(STORAGE_KEY);
 
-      // ✅ [修正1] 在初始化時，繞過對 mock token 的驗證
-      if (accessToken && (accessToken === MOCK_ACCESS_TOKEN || isValidToken(accessToken))) {
-        // 如果是 mock token，我們需要手動設定 axios header，因為我們不會呼叫 setSession
-        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+      if (accessToken && isValidToken(accessToken)) {
+        setSession(accessToken);
 
-        // 直接用 mock user 取代 axios 請求
-        // const res = await axios.get(endpoints.auth.me);
-        // const { user } = res.data;
+        const res = await axios.get(endpoints.auth.me);
+
+        const { user } = res.data;
 
         dispatch({
           type: Types.INITIAL,
           payload: {
             user: {
-              ...mockedUser,
+              ...user,
               accessToken,
             },
           },
@@ -129,41 +125,57 @@ export function AuthProvider({ children }: Props) {
         },
       });
     }
-  }, [mockedUser]);
+  }, []);
 
   useEffect(() => {
     initialize();
   }, [initialize]);
 
   // LOGIN
-  const login = useCallback(
-    async (email: string, password: string) => {
-      // const data = { email, password };
-      // const res = await axios.post(endpoints.auth.login, data);
-      // const { accessToken, user } = res.data;
 
-      // ✅ [修正2] 在登入時，完全手動處理 mock token，不再呼叫 setSession
+  const login = useCallback(async (email: string, password: string) => {
+    const data = {
+      email,
+      password,
+    };
 
-      // 1. 手動存入 sessionStorage
-      sessionStorage.setItem(STORAGE_KEY, MOCK_ACCESS_TOKEN);
+    const res = await axios.post(endpoints.auth.login, data);
 
-      // 2. 手動設定 axios header
-      axios.defaults.headers.common.Authorization = `Bearer ${MOCK_ACCESS_TOKEN}`;
+    const { accessToken, user } = res.data;
 
-      // 3. 更新 context 狀態
-      dispatch({
-        type: Types.LOGIN,
-        payload: {
-          user: {
-            ...mockedUser,
-            accessToken: MOCK_ACCESS_TOKEN,
-          },
+    setSession(accessToken);
+
+    dispatch({
+      type: Types.LOGIN,
+      payload: {
+        user: {
+          ...user,
+          accessToken,
         },
-      });
-    },
-    [mockedUser]
-  );
+      },
+    });
+  }, []);
 
+  /*
+  const login = useCallback(async (email: string, password: string) => {
+    // 模擬回傳值
+    const fakeUser = {
+      id: 1,
+      name: 'Demo User',
+      email,
+      accessToken: 'fake-jwt-token',
+    };
+
+    setSession(fakeUser.accessToken);
+
+    dispatch({
+      type: Types.LOGIN,
+      payload: {
+        user: fakeUser,
+      },
+    });
+  }, []);
+*/
   // REGISTER
   const register = useCallback(
     async (email: string, password: string, firstName: string, lastName: string) => {
@@ -195,7 +207,6 @@ export function AuthProvider({ children }: Props) {
 
   // LOGOUT
   const logout = useCallback(async () => {
-    // ✅ [修正3] 登出時，呼叫 setSession(null) 是安全的，因為它不會觸發 jwtDecode
     setSession(null);
     dispatch({
       type: Types.LOGOUT,

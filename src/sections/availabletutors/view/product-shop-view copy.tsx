@@ -45,6 +45,7 @@ const defaultFilters: IProductFilters = {
   category: 'all',
   priceRange: [0, 200],
   tutorNat: [],
+  tutorAvailable: 'all',
 };
 
 // ----------------------------------------------------------------------
@@ -133,6 +134,7 @@ export default function ProductShopView() {
           ratingOptions={PRODUCT_RATING_OPTIONS}
           genderOptions={PRODUCT_GENDER_OPTIONS}
           categoryOptions={['all', ...PRODUCT_CATEGORY_OPTIONS]}
+          availableOptions={['all']}
         />
 
         <ProductSort sort={sortBy} onSort={handleSortBy} sortOptions={PRODUCT_SORT_OPTIONS} />

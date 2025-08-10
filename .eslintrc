@@ -23,6 +23,12 @@
     }
   },
   "rules": {
+    "@typescript-eslint/no-shadow": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-plusplus": "off",
+    "no-plusplus": "off",
+    "@typescript-eslint/prefer-const": "off",
+    "prefer-const": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

@@ -40,6 +40,10 @@ export default function ProductFiltersResult({
     onFilters('category', 'all');
   };
 
+  const handleRemoveTutorAvailable = () => {
+    onFilters('available', 'all');
+  };
+
   const handleRemoveColor = (inputValue: string | string[]) => {
     const newValue = filters.colors.filter((item: string) => item !== inputValue);
     onFilters('colors', newValue);
@@ -78,6 +82,16 @@ export default function ProductFiltersResult({
                 onDelete={() => handleRemoveGender(item)}
               />
             ))}
+          </Block>
+        )}
+
+        {filters.tutorAvailable !== 'all' && (
+          <Block label="Category:">
+            <Chip
+              size="small"
+              label={filters.tutorAvailable}
+              onDelete={handleRemoveTutorAvailable}
+            />
           </Block>
         )}
 

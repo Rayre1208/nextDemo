@@ -5,7 +5,14 @@ export const PRODUCT_GENDER_OPTIONS = [
   { label: 'Women', value: 'Women' },
 ];
 
+export const TUTOR_GENDER_OPTIONS = [
+  { label: 'Male', value: 'male' },
+  { label: 'Female', value: 'female' },
+];
+
 export const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
+
+export const TUTOR_AVAILABLE_OPTIONS = ['Online', 'Offline'];
 
 export const PRODUCT_RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
 

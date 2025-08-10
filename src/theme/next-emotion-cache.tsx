@@ -79,7 +79,7 @@ export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionC
             key={name}
             data-emotion={`${registry.cache.key}-global ${name}`}
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: style }}
+            dangerouslySetInnerHTML={{ __html: style || '' }}
           />
         ))}
         {styles && (

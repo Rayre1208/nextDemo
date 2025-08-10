@@ -13,12 +13,19 @@ import { paths } from 'src/routes/paths';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useDebounce } from 'src/hooks/use-debounce';
 
-import { useGetRamdomTutors, useGetProducts, useSearchProducts } from 'src/api/product';
+import {
+  useGetRamdomTutors,
+  useGetProductsOrigin,
+  useGetProducts,
+  useSearchProducts,
+} from 'src/api/product';
 import {
   PRODUCT_SORT_OPTIONS,
   PRODUCT_COLOR_OPTIONS,
   TUTORS_NAT_OPTIONS,
   PRODUCT_GENDER_OPTIONS,
+  TUTOR_GENDER_OPTIONS,
+  TUTOR_AVAILABLE_OPTIONS,
   PRODUCT_RATING_OPTIONS,
   PRODUCT_CATEGORY_OPTIONS,
 } from 'src/_mock/_tutor';
@@ -43,6 +50,7 @@ const defaultFilters: IProductFilters = {
   colors: [],
   rating: '',
   category: 'all',
+  tutorAvailable: 'all',
   priceRange: [0, 200],
   tutorNat: [],
 };
@@ -131,8 +139,9 @@ export default function ProductShopView() {
           colorOptions={PRODUCT_COLOR_OPTIONS}
           tutorNATOptions={TUTORS_NAT_OPTIONS}
           ratingOptions={PRODUCT_RATING_OPTIONS}
-          genderOptions={PRODUCT_GENDER_OPTIONS}
+          genderOptions={TUTOR_GENDER_OPTIONS}
           categoryOptions={['all', ...PRODUCT_CATEGORY_OPTIONS]}
+          availableOptions={['all', ...TUTOR_AVAILABLE_OPTIONS]}
         />
 
         <ProductSort sort={sortBy} onSort={handleSortBy} sortOptions={PRODUCT_SORT_OPTIONS} />
@@ -201,7 +210,7 @@ function applyFilter({
   filters: IProductFilters;
   sortBy: string;
 }) {
-  const { gender, category, colors, priceRange, rating, tutorNat } = filters; // 添加 tutorNat
+  const { gender, category, tutorAvailable, colors, priceRange, rating, tutorNat } = filters; // 添加 tutorNat
 
   const min = priceRange[0];
   const max = priceRange[1];
@@ -230,11 +239,21 @@ function applyFilter({
 
   // FILTERS
   if (gender.length) {
-    inputData = inputData.filter((product) => gender.includes(product.gender));
+    inputData = inputData.filter(
+      (product) => product.randomtutors && gender.includes(product.randomtutors.gender)
+    );
   }
 
   if (category !== 'all') {
     inputData = inputData.filter((product) => product.category === category);
+  }
+
+  if (tutorAvailable !== 'all') {
+    if (tutorAvailable === 'Online') {
+      inputData = inputData.filter((product) => product.available >= 1);
+    } else if (tutorAvailable === 'Offline') {
+      inputData = inputData.filter((product) => product.available <= 0);
+    }
   }
 
   if (colors.length) {

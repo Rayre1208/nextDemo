@@ -1,11 +1,13 @@
 // ----------------------------------------------------------------------
 import { ITutorItem } from 'src/types/tutor';
+
 export type IProductFilterValue = string | string[] | number | number[];
 
 export type IProductFilters = {
   rating: string;
   gender: string[];
   category: string;
+  tutorAvailable: string;
   colors: string[];
   priceRange: number[];
   tutorNat: string[];

@@ -89,12 +89,12 @@ export default function ProductItem({ product }: Props) {
     >
       {newLabel.enabled && (
         <Label variant="filled" color="info">
-          {`Super Tutor`}
+          Super Tutor
         </Label>
       )}
       {saleLabel.enabled && (
         <Label variant="filled" color="error">
-          {'NEW'}
+          NEW
         </Label>
       )}
     </Stack>

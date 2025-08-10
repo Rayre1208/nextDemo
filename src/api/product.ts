@@ -4,6 +4,7 @@ import { ReactNode, useMemo } from 'react';
 import { fetcher, endpoints } from 'src/utils/axios';
 import { fetcherDemo, endpointsDemo } from 'src/utils/axiosDemo';
 import { fetcherVercel, endpointsVercel } from 'src/utils/axiosVercel';
+import { fetcherMacMini, endpointsMacMini } from 'src/utils/axiosMacMini';
 import { IProductItem } from 'src/types/product';
 import { ITutorItem } from 'src/types/tutor';
 import { _productNames } from 'src/_mock/assets';
@@ -23,7 +24,7 @@ export function useGetRamdomTutors() {
       randomtutorsValidating: isValidating,
       randomtutorsEmpty: !isLoading && !data?.results.length,
     }),
-    [data?.products, error, isLoading, isValidating]
+    [data?.results, error, isLoading, isValidating]
   );
 
   return memoizedValue;
@@ -44,7 +45,28 @@ export function useGetRamdomTutorsVercel() {
       randomtutorsValidating: isValidating,
       randomtutorsEmpty: !isLoading && !data?.results.length,
     }),
-    [data?.products, error, isLoading, isValidating]
+    [data?.results, error, isLoading, isValidating]
+  );
+
+  return memoizedValue;
+}
+
+// ----------------------------------------------------------------------
+
+export function useGetRamdomTutorsMacMini() {
+  const URL = endpointsMacMini.randomuserMacMini.root;
+
+  const { data, isLoading, error, isValidating } = useSWR(URL, fetcherDemo);
+
+  const memoizedValue = useMemo(
+    () => ({
+      randomtutors: (data?.results as ITutorItem[]) || [],
+      randomtutorsLoading: isLoading,
+      randomtutorsError: error,
+      randomtutorsValidating: isValidating,
+      randomtutorsEmpty: !isLoading && !data?.results.length,
+    }),
+    [data?.results, error, isLoading, isValidating]
   );
 
   return memoizedValue;
@@ -52,42 +74,39 @@ export function useGetRamdomTutorsVercel() {
 
 // ----------------------------------------------------------------------
 export function useGetProducts() {
-  //const URL = endpoints.product.list;
-  const URL = 'https://api-dev-minimal-v510.vercel.app/api/product/list';
+  const URL = 'https://api-dev-minimal-v620.pages.dev/api/product/list';
   const { randomtutors } = useGetRamdomTutors();
-
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
 
-  if (data && Array.isArray(data.products)) {
-    for (let i = 0; i < data.products.length; i++) {
-      data.products[i].randomtutors = randomtutors[i];
-    }
-  }
+  // 用 useMemo 產生新陣列，避免直接 mutate data
+  const memoizedProducts = useMemo(() => {
+    if (!data || !Array.isArray(data.products)) return [];
+    // 用 map 產生新陣列，並安全地加上 randomtutors
+    return data.products.map((product: IProductItem, idx: number) => ({
+      ...product,
+      randomtutors: randomtutors?.[idx], // 若 randomtutors 長度不足會是 undefined
+    }));
+  }, [data, randomtutors]);
 
-  const memoizedValue = useMemo(
-    () => ({
-      products: (data?.products as IProductItem[]) || [],
-      productsLoading: isLoading,
-      productsError: error,
-      productsValidating: isValidating,
-      productsEmpty: !isLoading && !data?.products.length,
-    }),
-    [data?.products, error, isLoading, isValidating]
-  );
-
-  return memoizedValue;
+  return {
+    products: memoizedProducts,
+    productsLoading: isLoading,
+    productsError: error,
+    productsValidating: isValidating,
+    productsEmpty: !isLoading && !memoizedProducts.length,
+  };
 }
 
 // ----------------------------------------------------------------------
 export function useGetProductsOrigin() {
   //const URL = endpoints.product.list;
-  const URL = 'https://api-dev-minimal-v510.vercel.app/api/product/list';
+  const URL = 'https://api-dev-minimal-v620.pages.dev/api/product/list';
   const { randomtutors } = useGetRamdomTutors();
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
 
   if (data && Array.isArray(data.products)) {
-    for (let i = 0; i < data.products.length; i++) {
+    for (let i = 0; i < data.products.length; i + 1) {
       data.products[i].randomtutors = randomtutors[i];
     }
   }
@@ -129,6 +148,7 @@ export function useGetProduct(productId: string) {
 // ----------------------------------------------------------------------
 
 export function useSearchProducts(query: string) {
+  //const URL = query ? [endpointsMacMini.randomuserMacMini.root, { params: { query } }] : '';
   const URL = query ? [endpointsVercel.randomuserVercel.root, { params: { query } }] : '';
   //const URL = endpointsVercel.randomuserVercel.root;
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcherVercel, {
@@ -146,7 +166,7 @@ export function useSearchProducts(query: string) {
       searchValidating: isValidating,
       searchEmpty: !isLoading && !(data?.results && data.results.length > 0),
     }),
-    [data?.results, error, isLoading, isValidating]
+    [data?.products, data?.results, error, isLoading, isValidating]
   );
 
   return memoizedValue;
@@ -162,7 +182,7 @@ export function useSearchProductsOrigin(query: string) {
     keepPreviousData: true,
   });
 
-  let searchIndex: number[] | undefined;
+  let searchIndex: number[] | undefined = query ? searchProductIndex(query) : undefined;
   searchIndex = query ? searchProductIndex(query) : undefined;
 
   if (data && searchIndex && Array.isArray(data.results)) {

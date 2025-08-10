@@ -43,6 +43,7 @@ type Props = {
   ratingOptions: string[];
   colorOptions: string[];
   tutorNATOptions: string[];
+  availableOptions: string[];
 };
 
 export default function ProductFilters({
@@ -61,6 +62,7 @@ export default function ProductFilters({
   genderOptions,
   ratingOptions,
   categoryOptions,
+  availableOptions,
 }: Props) {
   const marksLabel = [...Array(21)].map((_, index) => {
     const value = index * 10;
@@ -81,6 +83,13 @@ export default function ProductFilters({
       onFilters('gender', checked);
     },
     [filters.gender, onFilters]
+  );
+
+  const handleFilterAvailable = useCallback(
+    (newValue: string) => {
+      onFilters('tutorAvailable', newValue);
+    },
+    [onFilters]
   );
 
   const handleFilterCategory = useCallback(
@@ -153,8 +162,8 @@ export default function ProductFilters({
           key={option.value}
           control={
             <Checkbox
-              checked={filters.gender.includes(option.label)}
-              onClick={() => handleFilterGender(option.label)}
+              checked={filters.gender.includes(option.value)}
+              onClick={() => handleFilterGender(option.value)}
             />
           }
           label={option.label}
@@ -188,8 +197,35 @@ export default function ProductFilters({
     </Stack>
   );
 
+  const renderAvailable = (
+    <Stack>
+      <Typography variant="subtitle2" sx={{ mb: 1 }}>
+        Available
+      </Typography>
+      {availableOptions.map((option) => (
+        <FormControlLabel
+          key={option}
+          control={
+            <Radio
+              //checked={option === filters.category}
+              checked={filters.tutorAvailable.includes(option)}
+              onClick={() => handleFilterAvailable(option)}
+            />
+          }
+          label={option}
+          sx={{
+            ...(option === 'all' && {
+              textTransform: 'capitalize',
+            }),
+          }}
+        />
+      ))}
+    </Stack>
+  );
+
   const renderColor = (
     <Stack>
+      {/*
       <Typography variant="subtitle2" sx={{ mb: 1 }}>
         Color
       </Typography>
@@ -199,8 +235,9 @@ export default function ProductFilters({
         colors={colorOptions}
         limit={6}
       />
+      */}
       <Typography variant="subtitle2" sx={{ mb: 1 }}>
-        Tutor
+        Nation
       </Typography>
       <TutorNAT
         colors={colorOptions}
@@ -302,11 +339,9 @@ export default function ProductFilters({
           <Stack spacing={3}>
             {renderGender}
 
-            {renderCategory}
+            {renderAvailable}
 
             {renderColor}
-
-            {renderPrice}
 
             {renderRating}
           </Stack>
