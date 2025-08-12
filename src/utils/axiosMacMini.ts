@@ -4,21 +4,21 @@ import { RANDOMTUTOR_API_MacMini } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
-const axiosInstanceDemo = axios.create({ baseURL: RANDOMTUTOR_API_MacMini });
+const axiosInstanceMacMini = axios.create({ baseURL: RANDOMTUTOR_API_MacMini });
 
-axiosInstanceDemo.interceptors.response.use(
+axiosInstanceMacMini.interceptors.response.use(
   (res) => res,
   (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong')
 );
 
-export default axiosInstanceDemo;
+export default axiosInstanceMacMini;
 
 // ----------------------------------------------------------------------
 
 export const fetcherMacMini = async (args: string | [string, AxiosRequestConfig]) => {
   const [url, config] = Array.isArray(args) ? args : [args];
 
-  const res = await axiosInstanceDemo.get(url, { ...config });
+  const res = await axiosInstanceMacMini.get(url, { ...config });
 
   return res.data;
 };
@@ -28,5 +28,9 @@ export const fetcherMacMini = async (args: string | [string, AxiosRequestConfig]
 export const endpointsMacMini = {
   randomuserMacMini: {
     root: '/',
+    api: {
+      products: '/api/products',
+      rdmUser20: '/api/randomUser20',
+    },
   },
 };

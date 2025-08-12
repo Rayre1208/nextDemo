@@ -11,7 +11,7 @@ import { _productNames } from 'src/_mock/assets';
 // hesitate
 // ----------------------------------------------------------------------
 
-export function useGetRamdomTutors() {
+export function useGetRandomTutors() {
   const URL = endpointsDemo.randomuser.users20;
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcherDemo);
@@ -32,7 +32,7 @@ export function useGetRamdomTutors() {
 
 // ----------------------------------------------------------------------
 
-export function useGetRamdomTutorsVercel() {
+export function useGetRandomTutorsVercel() {
   const URL = endpointsVercel.randomuserVercel.root;
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcherDemo);
@@ -53,10 +53,10 @@ export function useGetRamdomTutorsVercel() {
 
 // ----------------------------------------------------------------------
 
-export function useGetRamdomTutorsMacMini() {
+export function useGetRandomTutorsMacMini() {
   const URL = endpointsMacMini.randomuserMacMini.root;
 
-  const { data, isLoading, error, isValidating } = useSWR(URL, fetcherDemo);
+  const { data, isLoading, error, isValidating } = useSWR(URL, fetcherMacMini);
 
   const memoizedValue = useMemo(
     () => ({
@@ -74,8 +74,9 @@ export function useGetRamdomTutorsMacMini() {
 
 // ----------------------------------------------------------------------
 export function useGetProducts() {
-  const URL = 'https://api-dev-minimal-v620.pages.dev/api/product/list';
-  const { randomtutors } = useGetRamdomTutors();
+  //const URL = 'https://api-dev-minimal-v620.pages.dev/api/product/list';
+  const URL = endpoints.product.list;
+  const { randomtutors } = useGetRandomTutors();
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
 
   // 用 useMemo 產生新陣列，避免直接 mutate data
@@ -101,7 +102,7 @@ export function useGetProducts() {
 export function useGetProductsOrigin() {
   //const URL = endpoints.product.list;
   const URL = 'https://api-dev-minimal-v620.pages.dev/api/product/list';
-  const { randomtutors } = useGetRamdomTutors();
+  const { randomtutors } = useGetRandomTutors();
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
 
@@ -148,7 +149,6 @@ export function useGetProduct(productId: string) {
 // ----------------------------------------------------------------------
 
 export function useSearchProducts(query: string) {
-  //const URL = query ? [endpointsMacMini.randomuserMacMini.root, { params: { query } }] : '';
   const URL = query ? [endpointsVercel.randomuserVercel.root, { params: { query } }] : '';
   //const URL = endpointsVercel.randomuserVercel.root;
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcherVercel, {
@@ -176,7 +176,7 @@ export function useSearchProducts(query: string) {
 
 export function useSearchProductsOrigin(query: string) {
   const URL = query ? [endpoints.product.search, { params: { query } }] : '';
-  const { randomtutors } = useGetRamdomTutors();
+  const { randomtutors } = useGetRandomTutors();
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher, {
     keepPreviousData: true,

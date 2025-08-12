@@ -14,7 +14,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { useDebounce } from 'src/hooks/use-debounce';
 
 import {
-  useGetRamdomTutors,
+  useGetRandomTutors,
   useGetProductsOrigin,
   useGetProducts,
   useSearchProducts,
