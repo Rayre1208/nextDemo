@@ -1,0 +1,30 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: next-express-web
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    expose:
+      - "3000"
+    networks:
+      - webnet
+
+  nginx:
+    image: nginx:stable
+    container_name: nginx-proxy-in-nextDemo
+    depends_on:
+      - web
+    ports:
+      - "8084:80"  # 本機測試
+      - "80:80"    # 上線時
+    volumes:
+      - ./deploy/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./deploy/nginx/static:/usr/share/nginx/html:ro  # 若要 /legacy/
+    networks:
+      - webnet
+
+networks:
+  webnet:
