@@ -9,8 +9,8 @@ import { enUS as enUSCore, frFR as frFRCore, zhHK as zhTWCore } from '@mui/mater
 // date pickers (MUI)
 import { enUS as enUSDate, frFR as frFRDate, zhHK as zhTWDate } from '@mui/x-date-pickers/locales';
 // data grid (MUI)
-import { enUS as enUSDataGrid, frFR as frFRDataGrid, zhHK as zhTWDataGrid } from '@mui/x-data-grid';
-
+//import { enUS as enUSDataGrid, frFR as frFRDataGrid, zhHK as zhTWDataGrid } from '@mui/x-data-grid';
+import { enUS as enUSDataGrid, frFR as frFRDataGrid, zhHK as zhTWDataGrid } from '@mui/x-data-grid/locales';
 // PLEASE REMOVE `LOCAL STORAGE` WHEN YOU CHANGE SETTINGS.
 // ----------------------------------------------------------------------
 
