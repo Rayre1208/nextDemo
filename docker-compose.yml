@@ -1,5 +1,5 @@
 services:
-  web:
+  express_web:
     build:
       context: .
       dockerfile: Dockerfile
@@ -16,10 +16,10 @@ services:
     image: nginx:stable
     container_name: nginx-proxy-in-nextDemo
     depends_on:
-      - web
+      - express_web
     ports:
-      - "8084:80"  # 本機測試
-      - "80:80"    # 上線時
+      - "8084:80"  # 本機測試 http://localhost:8084
+      - "80:80"    # 上線時 http://your-domain.com
     volumes:
       - ./deploy/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./deploy/nginx/static:/usr/share/nginx/html:ro  # 若要 /legacy/
