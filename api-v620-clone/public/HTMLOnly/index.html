@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" nonce="28d64afda9a2404eada7b5de737"
+        src="//local.adguard.org?ts=1756731642280&amp;type=content-script&amp;dmn=api-dev-minimal-v620.pages.dev&amp;url=https%3A%2F%2Fapi-dev-minimal-v620.pages.dev%2F&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+    <script type="text/javascript" nonce="28d64afda9a2404eada7b5de737"
+        src="//local.adguard.org?ts=1756731642280&amp;name=AdGuard%20Extra&amp;type=user-script"></script>
+    <link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/webpack-100b9e646d9c912e.js" />
+    <script src="/_next/static/chunks/fd9d1056-1eced005c983d845.js" async=""></script>
+    <script src="/_next/static/chunks/117-99a54df4bdf6a5a1.js" async=""></script>
+    <script src="/_next/static/chunks/main-app-8b98336d1af6a7b9.js" async=""></script>
+    <script src="/_next/static/chunks/345-ef54ff510982768b.js" async=""></script>
+    <script src="/_next/static/chunks/app/page-413508e3a1c9bc79.js" async=""></script>
+    <title>API - Minimal UI</title>
+    <meta name="description" content="Demo API for Minimal UI" />
+    <script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script>
+</head>
+
+<body>
+    <style data-emotion="css 1l8l0bt">
+        .css-1l8l0bt {
+            width: 100%;
+            margin-left: auto;
+            box-sizing: border-box;
+            margin-right: auto;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding: 40px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        }
+
+        @media (min-width:600px) {
+            .css-1l8l0bt {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+
+        @media (min-width:900px) {
+            .css-1l8l0bt {
+                max-width: 900px;
+            }
+        }
+    </style>
+    <div class="MuiContainer-root MuiContainer-maxWidthMd css-1l8l0bt">
+        <style data-emotion="css 1orv6po">
+            .css-1orv6po {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+            }
+
+            .css-1orv6po>:not(style):not(style) {
+                margin: 0;
+            }
+
+            .css-1orv6po>:not(style)~:not(style) {
+                margin-top: 24px;
+            }
+        </style>
+        <div class="MuiStack-root css-1orv6po">
+            <style data-emotion="css 1h2ah36">
+                .css-1h2ah36 {
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-flex-direction: column;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                .css-1h2ah36>:not(style):not(style) {
+                    margin: 0;
+                }
+
+                .css-1h2ah36>:not(style)~:not(style) {
+                    margin-top: 24px;
+                }
+            </style>
+            <div class="MuiStack-root css-1h2ah36">
+                <style data-emotion="css 1ion2yp">
+                    .css-1ion2yp {
+                        margin: 0;
+                        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                        font-weight: 400;
+                        font-size: 1.5rem;
+                        line-height: 1.334;
+                        letter-spacing: 0em;
+                        font-weight: 700;
+                    }
+                </style>
+                <h1 class="MuiTypography-root MuiTypography-h5 css-1ion2yp">The starting point for your next project
+                    v<!-- -->6.2.0</h1>
+                <style data-emotion="css bxmwoh">
+                    .css-bxmwoh {
+                        margin: 0;
+                        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                        font-weight: 400;
+                        font-size: 0.875rem;
+                        line-height: 1.43;
+                        letter-spacing: 0.01071em;
+                    }
+                </style>
+                <p class="MuiTypography-root MuiTypography-body2 css-bxmwoh">Host API:
+                    <strong>https://api-dev-minimal-v620.pages.dev</strong></p>
+            </div>
+            <style data-emotion="css 1sqouz">
+                .css-1sqouz {
+                    padding: 16px;
+                    gap: 12px;
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    border-radius: 8px;
+                    background-color: #F4F6F8;
+                    -webkit-flex-direction: column;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                }
+            </style>
+            <div class="MuiBox-root css-1sqouz">
+                <style data-emotion="css 1ntayem">
+                    .css-1ntayem {
+                        margin: 0;
+                        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                        font-weight: 500;
+                        font-size: 1.25rem;
+                        line-height: 1.6;
+                        letter-spacing: 0.0075em;
+                        font-weight: 700;
+                    }
+                </style>
+                <h6 class="MuiTypography-root MuiTypography-h6 css-1ntayem">Auth</h6>
+                <style data-emotion="css 19j3syk">
+                    .css-19j3syk {
+                        padding: 12px;
+                        gap: 12px;
+                        border-radius: 4px;
+                        display: -webkit-box;
+                        display: -webkit-flex;
+                        display: -ms-flexbox;
+                        display: flex;
+                        -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                        flex-direction: column;
+                        background-color: #fff;
+                    }
+
+                    .css-19j3syk strong {
+                        color: #d32f2f;
+                    }
+                </style>
+                <div class="MuiBox-root css-19j3syk">
+                    <style data-emotion="css 1430pl3">
+                        .css-1430pl3 {
+                            margin: 0;
+                            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                            font-weight: 400;
+                            font-size: 0.75rem;
+                            line-height: 1.66;
+                            letter-spacing: 0.03333em;
+                            color: rgba(0, 0, 0, 0.38);
+                        }
+                    </style><span class="MuiTypography-root MuiTypography-caption css-1430pl3">Get user info after
+                        login</span>
+                    <style data-emotion="css 1gmwkzf">
+                        .css-1gmwkzf {
+                            gap: 8px;
+                            display: -webkit-box;
+                            display: -webkit-flex;
+                            display: -ms-flexbox;
+                            display: flex;
+                            -webkit-align-items: center;
+                            -webkit-box-align: center;
+                            -ms-flex-align: center;
+                            align-items: center;
+                        }
+                    </style>
+                    <div class="MuiBox-root css-1gmwkzf">
+                        <style data-emotion="css 1f25r72">
+                            .css-1f25r72 {
+                                padding-left: 6px;
+                                padding-right: 6px;
+                                padding-top: 2px;
+                                padding-bottom: 2px;
+                                border-radius: 4px;
+                                font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                                font-weight: 700;
+                                font-size: 0.75rem;
+                                line-height: 1.66;
+                                letter-spacing: 0.03333em;
+                                color: #fff;
+                                background-color: #4caf50;
+                            }
+                        </style><span class="MuiBox-root css-1f25r72">GET</span>
+                        <style data-emotion="css i9gxme">
+                            .css-i9gxme {
+                                -webkit-box-flex: 1;
+                                -webkit-flex-grow: 1;
+                                -ms-flex-positive: 1;
+                                flex-grow: 1;
+                            }
+                        </style><span class="MuiBox-root css-i9gxme">/api/auth/me</span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Login</span>
+                    <div class="MuiBox-root css-1gmwkzf">
+                        <style data-emotion="css 1bh88s9">
+                            .css-1bh88s9 {
+                                padding-left: 6px;
+                                padding-right: 6px;
+                                padding-top: 2px;
+                                padding-bottom: 2px;
+                                border-radius: 4px;
+                                font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                                font-weight: 700;
+                                font-size: 0.75rem;
+                                line-height: 1.66;
+                                letter-spacing: 0.03333em;
+                                color: #fff;
+                                background-color: #03a9f4;
+                            }
+                        </style><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/auth/login</span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Register</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/auth/register</span></div>
+                </div>
+            </div>
+            <div class="MuiBox-root css-1sqouz">
+                <h6 class="MuiTypography-root MuiTypography-h6 css-1ntayem">Blog</h6>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get all posts</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/post/list</span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get post details by title</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/post/details?title=<strong>{title}</strong></span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get latest posts</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/post/latest?title=<strong>{title}</strong></span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Search post</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/post/search?query=<strong>{query}</strong></span></div>
+                </div>
+            </div>
+            <div class="MuiBox-root css-1sqouz">
+                <h6 class="MuiTypography-root MuiTypography-h6 css-1ntayem">Calendar</h6>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get all events</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/calendar</span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Create new event</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/calendar</span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Update event</span>
+                    <div class="MuiBox-root css-1gmwkzf">
+                        <style data-emotion="css 1nspyhc">
+                            .css-1nspyhc {
+                                padding-left: 6px;
+                                padding-right: 6px;
+                                padding-top: 2px;
+                                padding-bottom: 2px;
+                                border-radius: 4px;
+                                font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                                font-weight: 700;
+                                font-size: 0.75rem;
+                                line-height: 1.66;
+                                letter-spacing: 0.03333em;
+                                color: #fff;
+                                background-color: #ff9800;
+                            }
+                        </style><span class="MuiBox-root css-1nspyhc">PUT</span><span
+                            class="MuiBox-root css-i9gxme">/api/calendar</span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Delete event</span>
+                    <div class="MuiBox-root css-1gmwkzf">
+                        <style data-emotion="css 1ljt7tl">
+                            .css-1ljt7tl {
+                                padding-left: 6px;
+                                padding-right: 6px;
+                                padding-top: 2px;
+                                padding-bottom: 2px;
+                                border-radius: 4px;
+                                font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                                font-weight: 700;
+                                font-size: 0.75rem;
+                                line-height: 1.66;
+                                letter-spacing: 0.03333em;
+                                color: #fff;
+                                background-color: #ef5350;
+                            }
+                        </style><span class="MuiBox-root css-1ljt7tl">PATCH</span><span
+                            class="MuiBox-root css-i9gxme">/api/calendar</span>
+                    </div>
+                </div>
+            </div>
+            <div class="MuiBox-root css-1sqouz">
+                <h6 class="MuiTypography-root MuiTypography-h6 css-1ntayem">Chat</h6>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Search contacts</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/chat?endpoint=<strong>contacts</strong></span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get all conversations</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/chat?endpoint=<strong>conversations</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get conversation details by
+                        ID</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/chat?conversationId=<strong>{conversationId}</strong>&amp;endpoint=<strong>conversation</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Mark conversation as seen when
+                        click</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/chat?conversationId=<strong>{conversationId}</strong>&amp;endpoint=<strong>mark-as-seen</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Create new conversation</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/chat</span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Update conversation</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1nspyhc">PUT</span><span
+                            class="MuiBox-root css-i9gxme">/api/chat</span></div>
+                </div>
+            </div>
+            <div class="MuiBox-root css-1sqouz">
+                <h6 class="MuiTypography-root MuiTypography-h6 css-1ntayem">Kanban</h6>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get Board</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban</span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Create column</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban?endpoint=<strong>create-column</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Update column</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban?endpoint=<strong>update-column</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Move column</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban?endpoint=<strong>move-column</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Clear column</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban?endpoint=<strong>clear-column</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Delete column</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban?endpoint=<strong>delete-column</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Create task</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban?endpoint=<strong>delete-task</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Update task</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban?endpoint=<strong>update-task</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Move task</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban?endpoint=<strong>move-task</strong></span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Delete task</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1bh88s9">POST</span><span
+                            class="MuiBox-root css-i9gxme">/api/kanban?endpoint=<strong>delete-task</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div class="MuiBox-root css-1sqouz">
+                <h6 class="MuiTypography-root MuiTypography-h6 css-1ntayem">Mail</h6>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get all labels</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/mail/labels</span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get mails by labelId</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/mail/list?labelId=<strong>{labelId}</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get mail details by ID</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/mail/details?mailId=<strong>{mailId}</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div class="MuiBox-root css-1sqouz">
+                <h6 class="MuiTypography-root MuiTypography-h6 css-1ntayem">Product</h6>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get all products</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/product/list</span></div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get product details by ID</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/product/details?productId=<strong>{productId}</strong></span>
+                    </div>
+                </div>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Search product</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/product/search?query=<strong>{query}</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div class="MuiBox-root css-1sqouz">
+                <h6 class="MuiTypography-root MuiTypography-h6 css-1ntayem">Pagination</h6>
+                <div class="MuiBox-root css-19j3syk"><span
+                        class="MuiTypography-root MuiTypography-caption css-1430pl3">Get products</span>
+                    <div class="MuiBox-root css-1gmwkzf"><span class="MuiBox-root css-1f25r72">GET</span><span
+                            class="MuiBox-root css-i9gxme">/api/pagination?page=<strong>{page}</strong>&amp;perPage=<strong>{perPage}</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/_next/static/chunks/webpack-100b9e646d9c912e.js" async=""></script>
+    <script>(self.__next_f = self.__next_f || []).push([0]); self.__next_f.push([2, null])</script>
+    <script>self.__next_f.push([1, "1:I[2846,[],\"\"]\n3:I[9978,[\"345\",\"static/chunks/345-ef54ff510982768b.js\",\"931\",\"static/chunks/app/page-413508e3a1c9bc79.js\"],\"default\"]\n4:I[9643,[\"345\",\"static/chunks/345-ef54ff510982768b.js\",\"931\",\"static/chunks/app/page-413508e3a1c9bc79.js\"],\"default\"]\n5:I[843,[\"345\",\"static/chunks/345-ef54ff510982768b.js\",\"931\",\"static/chunks/app/page-413508e3a1c9bc79.js\"],\"default\"]\n6:I[4424,[\"345\",\"static/chunks/345-ef54ff510982768b.js\",\"931\",\"static/chunks/app/page-413508e3a1c9bc79.js\"],\"Section\"]\n7:I[8106,[\"345\",\"static/chunks/345-ef54ff510982768b.js\",\"931\",\"static/chunks/app/page-413508e3a1c9bc79.js\"],\"Block\"]\n8:I[4707,[],\"\"]\n9:I[6423,[],\"\"]\nb:I[1060,[],\"\"]\nc:[]\n"])</script>
+    <script>self.__next_f.push([1, "0:[\"$\",\"$L1\",null,{\"buildId\":\"EWU3i0GkRXY2LOPtUCht8\",\"assetPrefix\":\"\",\"urlParts\":[\"\",\"\"],\"initialTree\":[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"__PAGE__\",{},[[\"$L2\",[\"$\",\"$L3\",null,{\"maxWidth\":\"md\",\"sx\":{\"p\":5,\"my\":5,\"fontFamily\":\"fontFamily\"},\"children\":[\"$\",\"$L4\",null,{\"spacing\":3,\"children\":[[\"$\",\"$L4\",null,{\"spacing\":3,\"sx\":{\"textAlign\":\"center\"},\"children\":[[\"$\",\"$L5\",null,{\"variant\":\"h5\",\"component\":\"h1\",\"sx\":{\"fontWeight\":\"fontWeightBold\"},\"children\":[\"The starting point for your next project v\",\"6.2.0\"]}],[\"$\",\"$L5\",null,{\"variant\":\"body2\",\"children\":[\"Host API: \",[\"$\",\"strong\",null,{\"children\":\"https://api-dev-minimal-v620.pages.dev\"}]]}]]}],[\"$\",\"$L6\",null,{\"title\":\"Auth\",\"children\":[[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get user info after login\",\"path\":\"/api/auth/me\"}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Login\",\"path\":\"/api/auth/login\"}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Register\",\"path\":\"/api/auth/register\"}]]}],[\"$\",\"$L6\",null,{\"title\":\"Blog\",\"children\":[[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get all posts\",\"path\":\"/api/post/list\"}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get post details by title\",\"path\":[\"/api/post/details?title=\",[\"$\",\"strong\",null,{\"children\":\"{title}\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get latest posts\",\"path\":[\"/api/post/latest?title=\",[\"$\",\"strong\",null,{\"children\":\"{title}\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Search post\",\"path\":[\"/api/post/search?query=\",[\"$\",\"strong\",null,{\"children\":\"{query}\"}]]}]]}],[\"$\",\"$L6\",null,{\"title\":\"Calendar\",\"children\":[[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get all events\",\"path\":\"/api/calendar\"}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Create new event\",\"path\":\"/api/calendar\"}],[\"$\",\"$L7\",null,{\"method\":\"PUT\",\"description\":\"Update event\",\"path\":\"/api/calendar\"}],[\"$\",\"$L7\",null,{\"method\":\"PATCH\",\"description\":\"Delete event\",\"path\":\"/api/calendar\"}]]}],[\"$\",\"$L6\",null,{\"title\":\"Chat\",\"children\":[[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Search contacts\",\"path\":[\"/api/chat?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"contacts\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get all conversations\",\"path\":[\"/api/chat?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"conversations\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get conversation details by ID\",\"path\":[\"/api/chat?conversationId=\",[\"$\",\"strong\",null,{\"children\":\"{conversationId}\"}],\"\u0026endpoint=\",[\"$\",\"strong\",null,{\"children\":\"conversation\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Mark conversation as seen when click\",\"path\":[\"/api/chat?conversationId=\",[\"$\",\"strong\",null,{\"children\":\"{conversationId}\"}],\"\u0026endpoint=\",[\"$\",\"strong\",null,{\"children\":\"mark-as-seen\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Create new conversation\",\"path\":\"/api/chat\"}],[\"$\",\"$L7\",null,{\"method\":\"PUT\",\"description\":\"Update conversation\",\"path\":\"/api/chat\"}]]}],[\"$\",\"$L6\",null,{\"title\":\"Kanban\",\"children\":[[\"$\",\"$L7\",null,{\"method\":\"GET\",\"path\":\"/api/kanban\",\"description\":\"Get Board\"}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Create column\",\"path\":[\"/api/kanban?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"create-column\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Update column\",\"path\":[\"/api/kanban?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"update-column\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Move column\",\"path\":[\"/api/kanban?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"move-column\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Clear column\",\"path\":[\"/api/kanban?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"clear-column\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Delete column\",\"path\":[\"/api/kanban?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"delete-column\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Create task\",\"path\":[\"/api/kanban?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"delete-task\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Update task\",\"path\":[\"/api/kanban?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"update-task\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Move task\",\"path\":[\"/api/kanban?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"move-task\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"POST\",\"description\":\"Delete task\",\"path\":[\"/api/kanban?endpoint=\",[\"$\",\"strong\",null,{\"children\":\"delete-task\"}]]}]]}],[\"$\",\"$L6\",null,{\"title\":\"Mail\",\"children\":[[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get all labels\",\"path\":\"/api/mail/labels\"}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get mails by labelId\",\"path\":[\"/api/mail/list?labelId=\",[\"$\",\"strong\",null,{\"children\":\"{labelId}\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get mail details by ID\",\"path\":[\"/api/mail/details?mailId=\",[\"$\",\"strong\",null,{\"children\":\"{mailId}\"}]]}]]}],[\"$\",\"$L6\",null,{\"title\":\"Product\",\"children\":[[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get all products\",\"path\":\"/api/product/list\"}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get product details by ID\",\"path\":[\"/api/product/details?productId=\",[\"$\",\"strong\",null,{\"children\":\"{productId}\"}]]}],[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Search product\",\"path\":[\"/api/product/search?query=\",[\"$\",\"strong\",null,{\"children\":\"{query}\"}]]}]]}],[\"$\",\"$L6\",null,{\"title\":\"Pagination\",\"children\":[\"$\",\"$L7\",null,{\"method\":\"GET\",\"description\":\"Get products\",\"path\":[\"/api/pagination?page=\",[\"$\",\"strong\",null,{\"children\":\"{page}\"}],\"\u0026perPage=\",[\"$\",\"strong\",null,{\"children\":\"{perPage}\"}]]}]}]]}]}],null],null],null]},[[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"children\":[\"$\",\"$L8\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L9\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[]}]}]}]],null],null],\"couldBeIntercepted\":false,\"initialHead\":[null,\"$La\"],\"globalErrorComponent\":\"$b\",\"missingSlots\":\"$Wc\"}]\n"])</script>
+    <script>self.__next_f.push([1, "a:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"API - Minimal UI\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Demo API for Minimal UI\"}]]\n2:null\n"])</script>
+</body>
+
+</html>
