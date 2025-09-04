@@ -1,66 +1,114 @@
+// api-v620-server.js (合併後版本)
 const express = require("express");
 const path = require("path");
-const { Pool } = require("pg");
+const { Pool } = require("pg"); // <--- 重新啟用 node-postgres
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// --- 資料庫連線設定 (來自您的 API 伺服器) ---
+// --- 資料庫連線設定 ---
+// 使用您在 DBeaver 中為開發建立的獨立帳號與資料庫
+// 請務必更新 '...' 的部分以符合您的真實設定
 const pool = new Pool({
-  user: "wistorian",
-  host: "localhost",
-  database: "my_project_db",
-  password: "gragess", // 請記得換成您的資料庫密碼
-  port: 5432,
+  user: 'dev_wiz',             // 您建立的開發者帳號
+  host: 'host.docker.internal',            // 資料庫主機
+  database: 'dev_db',           // 您建立的開發資料庫
+  password: 'groguss', // 您的密碼
+  port: 5432,                   // PostgreSQL 預設 Port
 });
 
-// --- 兼容點 1: 首先定義 API 路由 ---
-// 處理所有 /api 開頭的請求
-app.use("/api", async (req, res) => {
-  const method = req.method;        // GET / POST / PUT ...
-  const requestPath = req.path;     // e.g. /post/details
-  const params = req.query;         // e.g. { title: "post01" }
+// --- 中介軟體 (Middleware) ---
+// 啟用 express.json()，這樣我們的 API 才能解析 POST 請求中的 JSON body
+app.use(express.json());
 
-  console.log(`[API] Received: ${method} ${req.originalUrl}`);
 
+// --- 資料庫初始化函式 ---
+// 這個關鍵函式會在伺服器啟動前執行，確保一切就緒
+async function initializeDatabase() {
+  let client;
   try {
-    const result = await pool.query(
-      `SELECT response 
-       FROM api_mock 
-       WHERE method = $1 
-         AND path = $2 
-         AND params @> $3::jsonb
-       LIMIT 1`,
-      // 在資料庫中儲存的路徑應包含 /api，例如 /api/post/details
-      [method, "/api" + requestPath, JSON.stringify(params)]
-    );
+    client = await pool.connect();
+    console.log("🐘 PostgreSQL 資料庫已成功連接！");
 
-    if (result.rows.length > 0) {
-      res.json(result.rows[0].response);
-    } else {
-      res.status(404).json({ error: "Mock not found for the given method, path, and params" });
-    }
+    // 關鍵步驟：建立一個名為 "tasks" 的資料表，但前提是它不存在 (IF NOT EXISTS)
+    // 這樣可以保證每次啟動伺服器時，資料表都處於可用狀態，避免錯誤
+    const createTableQuery = `
+      CREATE TABLE IF NOT EXISTS tasks (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        is_done BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+    await client.query(createTableQuery);
+    console.log("✅ 'tasks' 資料表已確認存在，伺服器準備就緒。");
+
   } catch (err) {
-    console.error("Database query error:", err);
-    res.status(500).json({ error: "Server error" });
+    console.error("❌ 資料庫初始化失敗，請檢查連線設定:", err.stack);
+    // 如果資料庫設定錯誤，伺服器將無法啟動，避免後續產生更多問題
+    process.exit(1);
+  } finally {
+    // 釋放客戶端連線
+    if (client) {
+      client.release();
+    }
+  }
+}
+
+// --- API 路由 (取代舊的模擬路由) ---
+
+// [GET] /api/tasks - 從資料庫取得所有任務
+app.get("/api/tasks", async (req, res) => {
+  try {
+    // 從連線池執行查詢
+    const result = await pool.query("SELECT * FROM tasks ORDER BY id ASC;");
+    // 將查詢結果以 JSON 格式回傳
+    res.json({
+      status: "success",
+      data: result.rows,
+    });
+  } catch (err) {
+    console.error("讀取 tasks 失敗:", err);
+    res.status(500).json({ status: "error", message: "無法從資料庫讀取資料。" });
   }
 });
 
-// --- 兼容點 2: 接著定義靜態檔案服務 ---
-// 如果請求路徑不是 /api/*，Express 會繼續往下找
-// 這裡它會嘗試從 'public' 資料夾中尋找匹配的檔案
-app.use(express.static(path.join(__dirname, 'public')));
+// [POST] /api/tasks - 在資料庫中新增一筆任務
+app.post("/api/tasks", async (req, res) => {
+  const { title } = req.body; // 從請求的 body 中取得 'title'
 
-// 處理所有其他路由，可以返回前端應用的主頁
-// 這對於使用 React Router 或 Vue Router 的單頁應用 (SPA) 特別有用
-app.get('/{*splat}', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  if (!title) {
+    return res.status(400).json({ status: "error", message: "請求 body 中缺少 'title' 欄位。" });
+  }
+
+  try {
+    const result = await pool.query(
+      "INSERT INTO tasks (title) VALUES ($1) RETURNING *;",
+      [title]
+    );
+    res.status(201).json({
+      status: "success",
+      message: "已成功新增任務。",
+      data: result.rows[0],
+    });
+  } catch (err) {
+    console.error("新增 task 失敗:", err);
+    res.status(500).json({ status: "error", message: "無法將資料寫入資料庫。" });
+  }
 });
 
 
-// --- 啟動合併後的伺服器 ---
-app.listen(port, () => {
-  console.log(`🚀 Unified server is running on http://localhost:${port}`);
-  console.log(`- API mock requests are handled at /api/*`);
-  console.log(`- Static files are served from the 'public' directory`);
+// --- 靜態檔案服務 (保持不變) ---
+app.use(express.static(path.join(__dirname, "public")));
+
+
+// --- 啟動伺服器 (更新後的啟動流程) ---
+// 1. 先執行資料庫初始化
+// 2. 成功後，再啟動 Express 伺服器監聽請求
+initializeDatabase().then(() => {
+  app.listen(port, () => {
+    console.log(`🚀 API 伺服器成功啟動，監聽於 http://localhost:${port}`);
+    console.log("➡️  現在可以測試 API: GET http://localhost:5000/api/tasks");
+  });
 });
+
