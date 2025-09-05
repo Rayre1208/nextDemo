@@ -1,4 +1,4 @@
-# docker-compose.yml (簡化後)
+# docker-compose.yml (整合 PostgreSQL 服務)
 services:
   express_web:
     build:
@@ -33,14 +33,47 @@ services:
       context: ./api-v620-clone
       dockerfile: Dockerfile
     container_name: api_clone_web
+    # <--- 新增：設定環境變數給 Node.js 讀取 ---
     environment:
       - NODE_ENV=production
       - PORT=5000
-    ports:
-      - "5000:5000"
+      - DB_HOST=postgres_db # 連線主機改為 DB 服務的名稱
+      - DB_USER=dev_wiz
+      - DB_PASSWORD=groguss
+      - DB_NAME=dev_db
+      - DB_PORT=5432
+    # <--- 修改：移除 ports，因為 NGINX 會代理，不再需要直接對外開放 ---
+    # ports:
+    #  - "5000:5000"
     networks:
       - webnet
+    # <--- 新增：設定服務依賴，確保 DB 會比 API 先啟動 ---
+    depends_on:
+      - postgres_db
+
+  # <--- 新增：定義全新的 PostgreSQL 服務 ---
+  postgres_db:
+    image: postgres:14-alpine # 使用一個明確的版本
+    container_name: postgres_db_container
+    environment:
+      POSTGRES_USER: dev_wiz
+      POSTGRES_PASSWORD: groguss
+      POSTGRES_DB: dev_db
+    ports:
+      # 將主機的 5433 Port 映射到容器的 5432 Port
+      # 這樣 DBeaver 就可以用 localhost:5433 連線，且不與主機上的 5432 衝突
+      - "5433:5432"
+    volumes:
+      # 使用具名 volume 來持久化資料庫資料
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - webnet
+    restart: always # 建議資料庫服務在失敗時自動重啟
 
 networks:
   webnet:
     driver: bridge
+
+# <--- 新增：定義用來儲存資料庫資料的 volume ---
+volumes:
+  postgres_data:
