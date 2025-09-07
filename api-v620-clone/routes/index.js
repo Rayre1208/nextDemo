@@ -1,18 +1,20 @@
-// routes/index.js (主路由器)
+// routes/index.js (修改後)
 const express = require('express');
 const router = express.Router();
 const tasksRouter = require('./tasks');
+const paginationRouter = require('./pagination');
+const productRouter = require('./product');
+const postRouter = require('./post'); // <--- 1. 引入新的路由
 const mockApiController = require('../controllers/mockApiController');
 
-// 將所有 /api/tasks 的請求交給 tasks.js 處理
 router.use('/tasks', tasksRouter);
+router.use('/pagination', paginationRouter);
+router.use('/product', productRouter);
 
-// 未來新增 /users 路由時，只要加一行
-// const usersRouter = require('./users');
-// router.use('/users', usersRouter);
+// ✨ 將 /api/post 的請求交給 post.js 處理
+router.use('/post', postRouter); // <--- 2. 掛載新的路由
 
 // --- 通用 Mock API 處理 ---
-// 注意：這個應該放在所有具體路由的後面，作為一個「備用」或「接殺」的路由
 router.use(mockApiController.handleGenericApi);
 
 module.exports = router;
