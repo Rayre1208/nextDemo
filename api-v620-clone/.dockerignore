@@ -1,0 +1,16 @@
+# 忽略 Node.js 的依賴資料夾
+node_modules
+
+# 忽略 TypeScript 編譯後的輸出資料夾 (我們會在 Docker 內部產生)
+dist
+
+# 忽略開發日誌和環境變數檔案
+npm-debug.log
+.env
+
+# 忽略版本控制和說明文件
+.git
+README.md
+
+
+

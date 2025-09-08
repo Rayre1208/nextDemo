@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",                /* 指定編譯後的 JavaScript 版本 */
+    "module": "NodeNext",               /* 指定模組系統，對於你的設定是 commonjs */
+    "outDir": "./dist",                 /* 編譯後的 .js 檔案要放在哪裡 */
+    "rootDir": "./src",                 /* .ts 原始碼的根目錄 */
+    "strict": true,                     /* 啟用所有嚴格的型別檢查 */
+    "esModuleInterop": true,            /* 允許 CommonJS 和 ES Modules 之間的互操作性 */
+    "skipLibCheck": true,               /* 跳過對宣告檔案 (.d.ts) 的型別檢查，加速編譯 */
+    "forceConsistentCasingInFileNames": true, /* 強制檔案名稱大小寫一致 */
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "allowJs": true
+  },
+  "include": ["src/**/*"],              /* 告訴編譯器要去哪裡找 .ts 檔案 */
+  "exclude": ["node_modules"]           /* 告訴編譯器要忽略哪些資料夾 */
+}
