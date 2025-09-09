@@ -2,8 +2,7 @@
 
 import { useMemo, useEffect, useReducer, useCallback } from 'react';
 
-//import axios, { endpoints } from 'src/utils/axios';
-import axiosTorianAPI, { endpoints } from 'src/utils/axiosTorianAPI';
+import axios, { endpoints } from 'src/utils/axios';
 import { useMockedUser } from 'src/hooks/use-mocked-user'; // 新增這行
 
 import { AuthContext } from './auth-context';
@@ -96,7 +95,7 @@ export function AuthProvider({ children }: Props) {
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
 
-        const res = await axiosTorianAPI.get(endpoints.auth.me);
+        const res = await axios.get(endpoints.auth.me);
 
         const { user } = res.data;
 
@@ -140,7 +139,7 @@ export function AuthProvider({ children }: Props) {
       password,
     };
 
-    const res = await axiosTorianAPI.post(endpoints.auth.login, data);
+    const res = await axios.post(endpoints.auth.login, data);
 
     const { accessToken, user } = res.data;
 
@@ -187,7 +186,7 @@ export function AuthProvider({ children }: Props) {
         lastName,
       };
 
-      const res = await axiosTorianAPI.post(endpoints.auth.register, data);
+      const res = await axios.post(endpoints.auth.register, data);
 
       const { accessToken, user } = res.data;
 

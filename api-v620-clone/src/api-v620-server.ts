@@ -2,9 +2,9 @@ import express, { Application } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url'; 
 import { PoolClient } from 'pg'; // 引入 pg 的型別
+import cors from 'cors';
 import { pool } from './config/db.js'; // 引入 pool (假設 db.ts 存在)
 import apiRoutes from './routes/index.js'; // 引入主路由器
-
 
 // ✨ 型別註記：將 app 宣告為 Express 的 Application 型別
 const app: Application = express();
@@ -13,11 +13,20 @@ const port: string | number = process.env.PORT || 5000;
 // --- 中介軟體 (Middleware) ---
 app.use(express.json());
 
+// --- CORS 設定 ---
+// 步驟 2：設定 CORS 選項，明確指定只允許您的前端網域
+const corsOptions = {
+  origin: 'https://www.torian.site',
+  optionsSuccessStatus: 200,
+};
+// 步驟 3：在所有 API 路由之前，使用 cors 中介軟體
+app.use(cors(corsOptions));
+// --- CORS 設定結束 ---
+
 // --- 靜態檔案服務 ---
 // 讓使用者訪問根目錄時能看到 public/index.html
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 // --- 掛載主 API 路由器 ---
 // 所有 /api 開頭的請求都會進入 routes/index.js 進行處理
@@ -43,9 +52,6 @@ async function initializeDatabase(): Promise<void> {
       await new Promise(res => setTimeout(res, 5000));
     }
   }
-
-  // ... (此處應有建立資料表的邏輯)
-  // ...
 
   // 確保 client 存在再釋放
   if (client) {

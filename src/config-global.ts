@@ -11,6 +11,7 @@ export const RANDOMTUTOR_API_MacMini = 'https://torian.pages.dev';
 //export const HOST_API = process.env.NEXT_PUBLIC_HOST_API;
 //https://api-dev-minimal-v510.vercel.app
 export const HOST_API = 'https://api-dev-minimal-v620.pages.dev';
+export const TORIAN_API = 'https://api-dev-v620.torian.site';
 export const MAC_MINI_API = 'https://api-dev-minimal-v620.pages.dev';
 //export const ASSETS_API = process.env.NEXT_PUBLIC_HOST_API;
 //https://api-dev-minimal-v510.vercel.app

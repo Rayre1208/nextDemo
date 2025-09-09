@@ -19,10 +19,10 @@ export function useMockedUser() {
   // 因為依賴項是空的，所以它只會在元件第一次渲染時建立一次
   const user = useMemo(
     () => ({
-      id: 'e99f09a7-dd88-49d5-b1c8-1daf80c2d7b1',
+      id: 'e99f09a7-dd88-49d5-b1c8-1daf80c2d7b1', // 6aff56bf-cc57-46d9-9908-4c87fec29aee
       displayName: 'Jaydon Frankie',
       email: 'demo@minimals.cc',
-      photoURL: '/assets/images/avatar/avatar_25.jpg',
+      photoURL: 'https://pub-c5e31b5cdafb419fb247a8ac2e78df7a.r2.dev/public/assets/images/mock/avatar/avatar-25.webp',// /assets/images/avatar/avatar_25.jpg
       phoneNumber: '+1-212-456-7890',
       country: 'United States',
       address: '90210 Broadway, New York, NY 10002, USA',

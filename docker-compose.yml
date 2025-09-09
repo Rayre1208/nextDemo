@@ -48,6 +48,12 @@ services:
     networks:
       - webnet
     # <--- 新增：設定服務依賴，確保 DB 會比 API 先啟動 ---
+
+    # --- ✨ 請在這裡加入以下設定 ✨ ---
+    env_file:
+      - ./api-v620-clone/.env # 指向您後端專案的 .env 檔案
+    # --- ✨ 修改結束 ✨ ---
+
     depends_on:
       - postgres_db
 
