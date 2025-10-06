@@ -90,7 +90,7 @@ export default function HomeMinimalTest() {
             lineHeight: '1.3', // 設置行高
           }}
         >
-          Ray
+          Torian
         </StyledTextGradient>
 
         <Typography variant="body2" sx={{ textAlign: 'center' }}>

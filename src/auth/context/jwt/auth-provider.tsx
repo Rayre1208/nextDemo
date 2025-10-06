@@ -4,7 +4,8 @@ import { useMemo, useEffect, useReducer, useCallback } from 'react';
 
 //import axios, { endpoints } from 'src/utils/axios';
 import axiosTorianAPI, { endpoints } from 'src/utils/axiosTorianAPI';
-import { useMockedUser } from 'src/hooks/use-mocked-user'; // 新增這行
+// import { useMockedUser } from 'src/hooks/use-mocked-user'; // 新增這行
+import { useMockedTorian } from 'src/hooks/use-mocked-Torian'; 
 
 import { AuthContext } from './auth-context';
 import { setSession, isValidToken } from './utils';
@@ -87,7 +88,7 @@ export function AuthProvider({ children }: Props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // 新增：取得 mock user
-  const { user: mockedUser } = useMockedUser();
+  const { user: mockedUser } = useMockedTorian();
 
   const initialize = useCallback(async () => {
     try {

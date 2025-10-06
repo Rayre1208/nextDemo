@@ -12,7 +12,7 @@ export interface LogoProps extends BoxProps {
   disabledLink?: boolean;
 }
 
-const Logo = forwardRef<HTMLDivElement, LogoProps>(
+const LogoMini = forwardRef<HTMLDivElement, LogoProps>(
   ({ disabledLink = false, sx, ...other }, ref) => {
     const theme = useTheme();
 
@@ -36,9 +36,9 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
       <Box
         ref={ref}
         component="img"
-        src="/logo/logoTorianT3.png"
+        src="/logo/logoCoreTorianT3.png"
         sx={{
-          width: 165,
+          width: 50,
           height: 50,
           display: 'inline-flex',
           ...sx,
@@ -59,4 +59,4 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
   }
 );
 
-export default Logo;
+export default LogoMini;

@@ -7,13 +7,14 @@ import Typography from '@mui/material/Typography';
 import { paths } from 'src/routes/paths';
 
 import { useMockedUser } from 'src/hooks/use-mocked-user';
+import { useMockedTorian } from 'src/hooks/use-mocked-Torian';
 
 import Label from 'src/components/label';
 
 // ----------------------------------------------------------------------
 
 export default function NavUpgrade() {
-  const { user } = useMockedUser();
+  const { user } = useMockedTorian();
 
   return (
     <Stack
@@ -55,9 +56,12 @@ export default function NavUpgrade() {
           </Typography>
         </Stack>
 
+        {/* 這是一個 JSX 註解 
         <Button variant="contained" href={paths.minimalUI} target="_blank" rel="noopener">
           Upgrade to Pro
         </Button>
+        */}
+
       </Stack>
     </Stack>
   );

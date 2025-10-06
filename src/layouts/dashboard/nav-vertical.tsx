@@ -8,6 +8,7 @@ import { usePathname } from 'src/routes/hooks';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useMockedUser } from 'src/hooks/use-mocked-user';
+import { useMockedTorian } from 'src/hooks/use-mocked-Torian';
 
 import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
@@ -26,7 +27,7 @@ type Props = {
 };
 
 export default function NavVertical({ openNav, onCloseNav }: Props) {
-  const { user } = useMockedUser();
+  const { user } = useMockedTorian();
 
   const pathname = usePathname();
 
