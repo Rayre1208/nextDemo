@@ -6,15 +6,16 @@ import Typography from '@mui/material/Typography';
 
 import { paths } from 'src/routes/paths';
 
-import { useMockedUser } from 'src/hooks/use-mocked-user';
-import { useMockedTorian } from 'src/hooks/use-mocked-Torian';
+//import { useMockedUser } from 'src/hooks/use-mocked-user';
+import { useAuthContext } from 'src/auth/hooks';
 
 import Label from 'src/components/label';
 
 // ----------------------------------------------------------------------
 
 export default function NavUpgrade() {
-  const { user } = useMockedTorian();
+  const { user } = useAuthContext();
+  console.log('NavUpgrade user object:', user);
 
   return (
     <Stack
@@ -42,7 +43,7 @@ export default function NavUpgrade() {
               borderBottomLeftRadius: 2,
             }}
           >
-            Free
+            Available
           </Label>
         </Box>
 

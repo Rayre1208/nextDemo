@@ -8,6 +8,8 @@ import { usePathname } from 'src/routes/hooks';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useMockedUser } from 'src/hooks/use-mocked-user';
+import { useAuthContext } from 'src/auth/hooks';
+
 import { useMockedTorian } from 'src/hooks/use-mocked-Torian';
 
 import Logo from 'src/components/logo';
@@ -27,7 +29,8 @@ type Props = {
 };
 
 export default function NavVertical({ openNav, onCloseNav }: Props) {
-  const { user } = useMockedTorian();
+
+  const { user } = useAuthContext();
 
   const pathname = usePathname();
 

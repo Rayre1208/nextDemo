@@ -5,7 +5,6 @@ import { useMemo, useEffect, useReducer, useCallback } from 'react';
 //import axios, { endpoints } from 'src/utils/axios';
 import axiosTorianAPI, { endpoints } from 'src/utils/axiosTorianAPI';
 // import { useMockedUser } from 'src/hooks/use-mocked-user'; // 新增這行
-import { useMockedTorian } from 'src/hooks/use-mocked-Torian'; 
 
 import { AuthContext } from './auth-context';
 import { setSession, isValidToken } from './utils';
@@ -87,9 +86,6 @@ type Props = {
 export function AuthProvider({ children }: Props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // 新增：取得 mock user
-  const { user: mockedUser } = useMockedTorian();
-
   const initialize = useCallback(async () => {
     try {
       const accessToken = sessionStorage.getItem(STORAGE_KEY);
@@ -99,7 +95,9 @@ export function AuthProvider({ children }: Props) {
 
         const res = await axiosTorianAPI.get(endpoints.auth.me);
 
-        const { user } = res.data;
+      //const { user } = res.data;
+      const { data: responseData } = res.data;
+      const { user } = responseData;        //const { data: { accessToken, user } } = res.data;
 
         dispatch({
           type: Types.INITIAL,
@@ -143,7 +141,12 @@ export function AuthProvider({ children }: Props) {
 
     const res = await axiosTorianAPI.post(endpoints.auth.login, data);
 
-    const { accessToken, user } = res.data;
+    // ✨✨✨ 關鍵除錯步驟：在這裡印出完整的 API 回應 ✨✨✨
+  console.log('API Login Response Data:', res.data);
+
+      //const { accessToken, user } = res.data;
+      const { data: responseData } = res.data;
+      const { accessToken, user } = responseData;        //const { data: { accessToken, user } } = res.data;
 
     setSession(accessToken);
 
@@ -190,7 +193,9 @@ export function AuthProvider({ children }: Props) {
 
       const res = await axiosTorianAPI.post(endpoints.auth.register, data);
 
-      const { accessToken, user } = res.data;
+      //const { accessToken, user } = res.data;
+      const { data: responseData } = res.data;
+      const { accessToken, user } = responseData;        //const { data: { accessToken, user } } = res.data;       //const { data: { accessToken, user } } = res.data;
 
       sessionStorage.setItem(STORAGE_KEY, accessToken);
 

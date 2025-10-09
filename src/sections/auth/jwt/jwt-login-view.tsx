@@ -46,6 +46,11 @@ export default function JwtLoginView() {
   });
 
   const defaultValues = {
+    email: 'torianwiz@gmail.com',
+    password: 'TorianDemo1131',
+  };
+
+  const defaultValuesOrigin = {
     email: 'demo@minimals.cc',
     password: 'demo1234',
   };

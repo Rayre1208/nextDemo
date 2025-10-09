@@ -28,9 +28,14 @@ app.use(cors(corsOptions));
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// ✨✨✨ 加上這兩行來除錯 ✨✨✨
+const publicPath = path.join(__dirname, '../public');
+console.log('Serving static files from:', publicPath);
+
 // --- 掛載主 API 路由器 ---
 // 所有 /api 開頭的請求都會進入 routes/index.js 進行處理
 app.use(express.static(path.join(__dirname, '../public')));
+
 app.use("/api", apiRoutes);
 
 // --- 資料庫初始化 ---
